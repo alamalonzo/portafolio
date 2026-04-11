@@ -1,0 +1,362 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Alam Alonzo — Architect. iOS Developer."
+  description="Personal site of Alam Alonzo. Architect, iOS developer, and project manager based in Santo Domingo, Dominican Republic."
+>
+
+  <!-- Language toggle -->
+  <div id="lang-toggle" class="lang-toggle">
+    <button data-lang="en" class="active">EN</button>
+    <span>|</span>
+    <button data-lang="es">ES</button>
+  </div>
+
+  <div class="page">
+    <div class="content">
+
+      <!-- 1. Greeting + Avatar -->
+      <div class="row greeting">
+        <span data-en="Hi, my name is Alam Alonzo." data-es="Hola, me llamo Alam Alonzo.">Hi, my name is Alam Alonzo.</span>
+        <div class="avatar" aria-label="Alam Alonzo">AA</div>
+      </div>
+
+      <!-- 2. iOS Apps -->
+      <div class="row">
+        <span data-en="I build iOS apps." data-es="Creo apps para iOS.">I build iOS apps.</span>
+        <div class="fan">
+          <a href="/apps" class="slot">
+            <div class="icon" style="background:#1a3d2b;">J</div>
+            <span class="tip">Jergas</span>
+          </a>
+          <a href="/apps" class="slot">
+            <div class="icon" style="background:#241a3d;">B</div>
+            <span class="tip">Bimio</span>
+          </a>
+          <a href="/apps" class="slot">
+            <div class="icon" style="background:#3d2a1a;">L</div>
+            <span class="tip">Lazo</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Architecture -->
+      <div class="row">
+        <span data-en="I also design and build spaces." data-es="También diseño y construyo espacios.">I also design and build spaces.</span>
+        <div class="fan">
+          <a href="/architecture" class="slot">
+            <div class="icon arch" style="background:#1a1a1a;"></div>
+            <span class="tip">CEDIGLO</span>
+          </a>
+          <a href="/architecture" class="slot">
+            <div class="icon arch" style="background:#221c16;"></div>
+            <span class="tip">Casa Jarabacoa</span>
+          </a>
+          <a href="/architecture" class="slot">
+            <div class="icon arch" style="background:#161c22;"></div>
+            <span class="tip">Bolero 21</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. CTA -->
+      <div class="row mt">
+        <span data-en="If you need an architect or iOS developer," data-es="Si necesitas un arquitecto o desarrollador iOS,">If you need an architect or iOS developer,</span>
+        <a href="mailto:alonzo.alam@gmail.com" class="link" data-en="let's work together :)" data-es="trabajemos juntos :)">let's work together :)</a>
+      </div>
+
+      <!-- 5. Social -->
+      <div class="row mt">
+        <span data-en="I also post regularly on these platforms" data-es="También publico en estas plataformas">I also post regularly on these platforms</span>
+        <div class="fan">
+          <a href="https://x.com/alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="X">
+            <div class="icon social-x">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <span class="tip">@alamalonzo</span>
+          </a>
+          <a href="https://instagram.com/alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="Instagram">
+            <div class="icon social-ig">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </div>
+            <span class="tip">@alamalonzo</span>
+          </a>
+          <a href="https://tiktok.com/@alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="TikTok">
+            <div class="icon social-tt">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.54a8.28 8.28 0 004.84 1.54V7.63a4.85 4.85 0 01-1.07-.94z"/></svg>
+            </div>
+            <span class="tip">@alamalonzo</span>
+          </a>
+          <a href="https://linkedin.com/in/alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="LinkedIn">
+            <div class="icon social-li">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <span class="tip">@alamalonzo</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. Tools link -->
+      <div class="row">
+        <span data-en="Curious about my tools?" data-es="¿Curioso sobre mis herramientas?">Curious about my tools?</span>
+        <a href="/uses" class="link" data-en="Click here." data-es="Haz click aquí.">Click here.</a>
+      </div>
+
+      <!-- Separator -->
+      <hr class="sep" />
+
+      <!-- 7. Footer -->
+      <div class="footer">
+        <span>
+          <span data-en="Want to work on a project together?" data-es="¿Quieres trabajar en un proyecto?">Want to work on a project together?</span>
+          <a href="mailto:alonzo.alam@gmail.com" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
+        </span>
+        <span>
+          <span data-en="Looking for my portfolio or CV?" data-es="¿Buscas mi portafolio o CV?">Looking for my portfolio or CV?</span>
+          <a href="/architecture" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
+        </span>
+        <span>
+          <span data-en="Want to say hi?" data-es="¿Quieres saludar?">Want to say hi?</span>
+          <a href="mailto:alonzo.alam@gmail.com" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  /* ── Page ── */
+  .page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem 2rem 5rem;
+  }
+
+  @media (min-width: 640px) {
+    .page {
+      padding-top: 5rem;
+    }
+  }
+
+  .content {
+    width: 100%;
+    max-width: 42rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* ── Rows ── */
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #1f2937;
+    line-height: 1.5;
+  }
+
+  .greeting {
+    margin-bottom: 1rem;
+  }
+
+  .mt {
+    margin-top: 1.5rem;
+  }
+
+  /* ── Avatar ── */
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #9ca3af;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  /* ── Icon fan ── */
+  .fan {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* ── Icon slot ── */
+  .slot {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    line-height: 0;
+  }
+
+  /* ── Icon image ── */
+  .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .arch {
+    border-radius: 0.5rem;
+  }
+
+  /* Social backgrounds */
+  .social-x  { background: #000; }
+  .social-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .social-tt { background: #010101; }
+  .social-li { background: #0a66c2; }
+
+  /* ── Fan hover — desktop only ── */
+  @media (min-width: 640px) {
+    .fan {
+      gap: 0;
+    }
+
+    /* Spring easing + stagger per slot */
+    .fan .slot:nth-child(1) {
+      transform: rotate(-6deg) translateX(14px);
+      z-index: 10;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0ms;
+    }
+    .fan .slot:nth-child(2) {
+      transform: rotate(3deg) translateX(7px);
+      z-index: 20;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 40ms;
+    }
+    .fan .slot:nth-child(3) {
+      transform: rotate(-4deg) translateX(0);
+      z-index: 30;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 80ms;
+    }
+    .fan .slot:nth-child(4) {
+      transform: rotate(5deg) translateX(-5px);
+      z-index: 40;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 120ms;
+    }
+
+    /* Hover: fan out */
+    .fan:hover .slot:nth-child(1) { transform: rotate(0deg) translateX(0);    }
+    .fan:hover .slot:nth-child(2) { transform: rotate(0deg) translateX(8px);  }
+    .fan:hover .slot:nth-child(3) { transform: rotate(0deg) translateX(16px); }
+    .fan:hover .slot:nth-child(4) { transform: rotate(0deg) translateX(24px); }
+  }
+
+  /* ── Tooltips — always absolute, never take space ── */
+  .tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    visibility: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .tip {
+      visibility: visible;
+    }
+    .slot:hover .tip {
+      opacity: 1;
+    }
+  }
+
+  /* ── Links ── */
+  .link {
+    color: #2563eb;
+    transition: color 0.15s;
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .link:hover {
+    color: #9333ea;
+  }
+
+  /* ── Separator ── */
+  .sep {
+    border: none;
+    border-top: 1px dotted #d1d5db;
+    margin: 1rem 0;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #1f2937;
+  }
+
+  /* ── Lang toggle ── */
+  .lang-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    z-index: 100;
+  }
+
+  .lang-toggle span {
+    color: #d1d5db;
+  }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.3rem;
+    transition: color 0.15s;
+  }
+
+  .lang-toggle button.active { color: #374151; }
+  .lang-toggle button:hover:not(.active) { color: #374151; }
+</style>
