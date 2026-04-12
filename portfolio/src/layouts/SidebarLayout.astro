@@ -1,0 +1,72 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Alam Alonzo', description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="sidebar-layout">
+
+    <aside class="sidebar">
+      <slot name="sidebar" />
+    </aside>
+
+    <main class="main">
+      <slot />
+    </main>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .sidebar-layout {
+    display: flex;
+    min-height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    padding: 3rem 2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #f3f4f6;
+  }
+
+  .main {
+    flex: 1;
+    padding: 3rem 3rem 5rem;
+    min-width: 0;
+    max-width: 900px;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar-layout {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: static;
+      padding: 1.5rem 1.5rem 1rem;
+      border-right: none;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .main {
+      padding: 2rem 1.5rem 4rem;
+    }
+  }
+</style>

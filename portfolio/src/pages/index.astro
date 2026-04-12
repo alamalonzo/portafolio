@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Alam Alonzo — Architect. iOS Developer."
-  description="Personal site of Alam Alonzo. Architect, iOS developer, and project manager based in Santo Domingo, Dominican Republic."
+  description="Personal site of Alam Alonzo. Architect, iOS developer, and project manager."
 >
 
   <!-- Language toggle -->
@@ -15,59 +15,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <div class="page">
-    <div class="content">
+    <div class="content" style="display:flex;flex-direction:column;gap:1.5rem;width:100%;max-width:42rem;">
 
-      <!-- 1. Greeting + Avatar -->
-      <div class="row greeting">
-        <span data-en="Hi, my name is Alam Alonzo." data-es="Hola, me llamo Alam Alonzo.">Hi, my name is Alam Alonzo.</span>
-        <div class="avatar" aria-label="Alam Alonzo">AA</div>
+      <!-- Name block -->
+      <div class="name-block">
+        <h1 class="name">ALAM ALONZO</h1>
+        <p class="subtitle" data-en="Architect & iOS Developer" data-es="Arquitecto & iOS Developer">Architect & iOS Developer</p>
       </div>
 
-      <!-- 2. iOS Apps -->
+      <!-- Architecture (primary expertise — goes first) -->
       <div class="row">
-        <span data-en="I build iOS apps." data-es="Creo apps para iOS.">I build iOS apps.</span>
+        <span data-en="I design and build spaces." data-es="Diseño y construyo espacios.">I design and build spaces.</span>
         <div class="fan">
-          <a href="/apps" class="slot">
-            <div class="icon" style="background:#1a3d2b;">J</div>
-            <span class="tip">Jergas</span>
-          </a>
-          <a href="/apps" class="slot">
-            <div class="icon" style="background:#241a3d;">B</div>
-            <span class="tip">Bimio</span>
-          </a>
-          <a href="/apps" class="slot">
-            <div class="icon" style="background:#3d2a1a;">L</div>
-            <span class="tip">Lazo</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- 3. Architecture -->
-      <div class="row">
-        <span data-en="I also design and build spaces." data-es="También diseño y construyo espacios.">I also design and build spaces.</span>
-        <div class="fan">
-          <a href="/architecture" class="slot">
+          <a href="/architecture" class="slot" aria-label="CEDIGLO">
             <div class="icon arch" style="background:#1a1a1a;"></div>
             <span class="tip">CEDIGLO</span>
           </a>
-          <a href="/architecture" class="slot">
+          <a href="/architecture" class="slot" aria-label="Casa Jarabacoa">
             <div class="icon arch" style="background:#221c16;"></div>
             <span class="tip">Casa Jarabacoa</span>
           </a>
-          <a href="/architecture" class="slot">
+          <a href="/architecture" class="slot" aria-label="Bolero 21">
             <div class="icon arch" style="background:#161c22;"></div>
             <span class="tip">Bolero 21</span>
           </a>
         </div>
       </div>
 
-      <!-- 4. CTA -->
+      <!-- iOS Apps -->
+      <div class="row">
+        <span data-en="I also build iOS apps." data-es="También creo apps para iOS.">I also build iOS apps.</span>
+        <div class="fan">
+          <a href="/apps" class="slot" aria-label="Jergas">
+            <div class="icon" style="background:#1a3d2b;">J</div>
+            <span class="tip">Jergas</span>
+          </a>
+          <a href="/apps" class="slot" aria-label="Bimio">
+            <div class="icon" style="background:#241a3d;">B</div>
+            <span class="tip">Bimio</span>
+          </a>
+          <a href="/apps" class="slot" aria-label="Lazo">
+            <div class="icon" style="background:#3d2a1a;">L</div>
+            <span class="tip">Lazo</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- CTA -->
       <div class="row mt">
         <span data-en="If you need an architect or iOS developer," data-es="Si necesitas un arquitecto o desarrollador iOS,">If you need an architect or iOS developer,</span>
         <a href="mailto:alonzo.alam@gmail.com" class="link" data-en="let's work together :)" data-es="trabajemos juntos :)">let's work together :)</a>
       </div>
 
-      <!-- 5. Social -->
+      <!-- Social -->
       <div class="row mt">
         <span data-en="I also post regularly on these platforms" data-es="También publico en estas plataformas">I also post regularly on these platforms</span>
         <div class="fan">
@@ -98,28 +98,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
-      <!-- 6. Tools link -->
+      <!-- Tools -->
       <div class="row">
         <span data-en="Curious about my tools?" data-es="¿Curioso sobre mis herramientas?">Curious about my tools?</span>
         <a href="/uses" class="link" data-en="Click here." data-es="Haz click aquí.">Click here.</a>
       </div>
 
-      <!-- Separator -->
+      <!-- Separator + Footer -->
       <hr class="sep" />
 
-      <!-- 7. Footer -->
       <div class="footer">
+        <!-- Line 1: expandable about -->
+        <details class="about-details">
+          <summary class="about-summary">
+            <span data-en="Want to know more about me?" data-es="¿Quieres saber más sobre mí?">Want to know more about me?</span>
+          </summary>
+          <div class="about-body">
+            <p data-en="I'm an architect based in the Dominican Republic with 10+ years of experience across residential, commercial, and medical projects. I design and supervise construction myself — from early concept through the last coat of paint." data-es="Soy arquitecto en República Dominicana con más de 10 años de experiencia en proyectos residenciales, comerciales y médicos. Diseño y superviso la construcción yo mismo — desde el concepto inicial hasta el último detalle.">
+              I'm an architect based in the Dominican Republic with 10+ years of experience across residential, commercial, and medical projects. I design and supervise construction myself — from early concept through the last coat of paint.
+            </p>
+            <p data-en="On the side, I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints." data-es="En paralelo, creo apps para iOS en Swift. Las dos disciplinas se complementan más de lo que la gente espera — ambas tratan de resolver problemas dentro de limitaciones precisas.">
+              On the side, I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints.
+            </p>
+          </div>
+        </details>
+
+        <!-- Line 2: architecture link -->
         <span>
-          <span data-en="Want to work on a project together?" data-es="¿Quieres trabajar en un proyecto?">Want to work on a project together?</span>
-          <a href="mailto:alonzo.alam@gmail.com" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
-        </span>
-        <span>
-          <span data-en="Looking for my portfolio or CV?" data-es="¿Buscas mi portafolio o CV?">Looking for my portfolio or CV?</span>
+          <span data-en="See my architecture work." data-es="Ver mi trabajo de arquitectura.">See my architecture work.</span>
           <a href="/architecture" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
         </span>
+
+        <!-- Line 3: apps link -->
         <span>
-          <span data-en="Want to say hi?" data-es="¿Quieres saludar?">Want to say hi?</span>
-          <a href="mailto:alonzo.alam@gmail.com" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
+          <span data-en="See my iOS apps." data-es="Ver mis apps de iOS.">See my iOS apps.</span>
+          <a href="/apps" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
         </span>
       </div>
 
@@ -134,21 +147,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 2.5rem 2rem 5rem;
+    align-items: flex-start;
+    padding: 3rem 2rem 5rem;
   }
 
   @media (min-width: 640px) {
     .page {
-      padding-top: 5rem;
+      align-items: center;
+      padding: 5rem 2rem;
     }
   }
 
+  /* ── Content (single column) ── */
   .content {
     width: 100%;
     max-width: 42rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  /* ── Name block ── */
+  .name-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #111827;
+  }
+
+  .subtitle {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #9ca3af;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
   /* ── Rows ── */
@@ -164,33 +204,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 1.5;
   }
 
-  .greeting {
-    margin-bottom: 1rem;
-  }
+  .mt { margin-top: 0.75rem; }
 
-  .mt {
-    margin-top: 1.5rem;
-  }
-
-  /* ── Avatar ── */
-  .avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    border-radius: 50%;
-    background: #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    font-weight: 500;
-    color: #9ca3af;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
-  }
-
-  /* ── Icon fan ── */
+  /* ── Fan ── */
   .fan {
     display: inline-flex;
     align-items: center;
@@ -199,7 +215,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     flex-shrink: 0;
   }
 
-  /* ── Icon slot ── */
+  /* ── Slot ── */
   .slot {
     position: relative;
     display: inline-block;
@@ -207,7 +223,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 0;
   }
 
-  /* ── Icon image ── */
+  /* ── Icon ── */
   .icon {
     width: 2.5rem;
     height: 2.5rem;
@@ -226,23 +242,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     cursor: pointer;
   }
 
-  .arch {
-    border-radius: 0.5rem;
-  }
+  .arch { border-radius: 0.5rem; }
 
-  /* Social backgrounds */
   .social-x  { background: #000; }
   .social-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
   .social-tt { background: #010101; }
   .social-li { background: #0a66c2; }
 
-  /* ── Fan hover — desktop only ── */
+  /* ── Fan animation — desktop only ── */
   @media (min-width: 640px) {
-    .fan {
-      gap: 0;
-    }
+    .fan { gap: 0; }
 
-    /* Spring easing + stagger per slot */
     .fan .slot:nth-child(1) {
       transform: rotate(-6deg) translateX(14px);
       z-index: 10;
@@ -264,14 +274,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 120ms;
     }
 
-    /* Hover: fan out */
     .fan:hover .slot:nth-child(1) { transform: rotate(0deg) translateX(0);    }
     .fan:hover .slot:nth-child(2) { transform: rotate(0deg) translateX(8px);  }
     .fan:hover .slot:nth-child(3) { transform: rotate(0deg) translateX(16px); }
     .fan:hover .slot:nth-child(4) { transform: rotate(0deg) translateX(24px); }
   }
 
-  /* ── Tooltips — always absolute, never take space ── */
+  /* ── Tooltips ── */
   .tip {
     position: absolute;
     bottom: calc(100% + 8px);
@@ -292,41 +301,86 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   @media (min-width: 640px) {
-    .tip {
-      visibility: visible;
-    }
-    .slot:hover .tip {
-      opacity: 1;
-    }
+    .tip { visibility: visible; }
+    .slot:hover .tip { opacity: 1; }
   }
 
   /* ── Links ── */
   .link {
     color: #2563eb;
-    transition: color 0.15s;
-    font-size: 1.5rem;
+    font-size: inherit;
     font-weight: 300;
+    transition: color 0.15s;
   }
+  .link:hover { color: #9333ea; }
 
-  .link:hover {
-    color: #9333ea;
-  }
+  /* In rows, inherit the row's large size */
+  .row .link { font-size: 1.5rem; }
 
   /* ── Separator ── */
   .sep {
     border: none;
     border-top: 1px dotted #d1d5db;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
 
   /* ── Footer ── */
   .footer {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.25rem;
     font-size: 1.125rem;
     font-weight: 300;
     color: #1f2937;
+  }
+
+  /* ── About expandable ── */
+  .about-details {
+    font-size: 1.125rem;
+    font-weight: 300;
+    color: #1f2937;
+  }
+
+  .about-summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    user-select: none;
+    color: #1f2937;
+    font-size: 1.125rem;
+  }
+
+  .about-summary::-webkit-details-marker { display: none; }
+
+  .about-summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #9ca3af;
+    transition: transform 0.2s ease;
+    line-height: 1;
+  }
+
+  .about-details[open] .about-summary::after {
+    content: '−';
+  }
+
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-left: 0;
+  }
+
+  .about-body p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #6b7280;
+    line-height: 1.7;
+    max-width: 52ch;
   }
 
   /* ── Lang toggle ── */
@@ -337,14 +391,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     display: flex;
     align-items: center;
     gap: 0.2rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
     z-index: 100;
   }
 
-  .lang-toggle span {
-    color: #d1d5db;
-  }
+  .lang-toggle span { color: #d1d5db; font-size: 0.65rem; }
 
   .lang-toggle button {
     background: none;

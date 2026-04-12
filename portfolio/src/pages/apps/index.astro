@@ -1,0 +1,430 @@
+---
+import SidebarLayout from '../../layouts/SidebarLayout.astro';
+
+const apps = [
+  {
+    slug: 'jergas',
+    name: 'Jergas',
+    status: 'live',
+    statusLabel: 'Live on App Store',
+    statusLabelEs: 'En el App Store',
+    bg: '#1a3d2b',
+    letter: 'J',
+    descriptionEn: 'A dictionary of Dominican slang. Look up words, learn their meaning, and discover how the language actually sounds on the street.',
+    descriptionEs: 'Un diccionario de jerga dominicana. Busca palabras, aprende su significado y descubre cómo suena el idioma en la calle.',
+    tags: ['SwiftUI', 'Swift', 'CloudKit'],
+    appStoreUrl: '#',
+    webUrl: '#',
+  },
+  {
+    slug: 'bimio',
+    name: 'Bimio',
+    status: 'dev',
+    statusLabel: 'In Development',
+    statusLabelEs: 'En Desarrollo',
+    bg: '#241a3d',
+    letter: 'B',
+    descriptionEn: 'A construction project management tool built for architects and contractors in Latin America. Tracks budgets, progress, and team tasks on-site.',
+    descriptionEs: 'Una herramienta de gestión de proyectos de construcción para arquitectos y contratistas en Latinoamérica. Rastrea presupuestos, avance y tareas del equipo en obra.',
+    tags: ['SwiftUI', 'Swift', 'CloudKit', 'StoreKit'],
+    appStoreUrl: null,
+    webUrl: null,
+  },
+  {
+    slug: 'lazo',
+    name: 'Lazo',
+    status: 'dev',
+    statusLabel: 'In Development',
+    statusLabelEs: 'En Desarrollo',
+    bg: '#3d2a1a',
+    letter: 'L',
+    descriptionEn: 'A private shared space for couples — notes, lists, memories, and moments in one place. No social feed, no noise.',
+    descriptionEs: 'Un espacio compartido y privado para parejas — notas, listas, recuerdos y momentos en un solo lugar. Sin feed social, sin ruido.',
+    tags: ['SwiftUI', 'Swift', 'CloudKit', 'WidgetKit'],
+    appStoreUrl: null,
+    webUrl: null,
+  },
+];
+
+const skills = [
+  { category: 'Languages', items: 'Swift · SwiftUI' },
+  { category: 'Frameworks', items: 'CloudKit · StoreKit · WidgetKit' },
+  { category: 'Tools', items: 'Xcode · TestFlight · Instruments' },
+  { category: 'Design', items: 'Figma · SF Symbols' },
+];
+---
+
+<SidebarLayout title="Apps — Alam Alonzo" description="iOS apps by Alam Alonzo. Swift developer building tools for real problems.">
+
+  <!-- Sidebar -->
+  <div slot="sidebar" class="sidebar-content">
+    <div class="sidebar-top">
+      <a href="/" class="sidebar-name">Alam Alonzo</a>
+      <p class="sidebar-role" data-en="iOS Developer · Swift" data-es="iOS Developer · Swift">iOS Developer · Swift</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#apps" class="nav-link active" data-en="Apps" data-es="Apps">Apps</a>
+      <a href="#skills" class="nav-link" data-en="Skills" data-es="Skills">Skills</a>
+      <a href="#" class="nav-link" data-en="CV ↓" data-es="CV ↓">CV ↓</a>
+    </nav>
+
+    <a href="/" class="back-link">← <span data-en="Back to home" data-es="Volver al inicio">Back to home</span></a>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content">
+
+    <div id="apps" class="apps-grid">
+      {apps.map((app) => (
+        <div class="app-card">
+
+          <div class="card-top">
+            <div class="app-icon" style={`background:${app.bg};`}>{app.letter}</div>
+            <span class={`status-badge ${app.status}`} data-en={app.statusLabel} data-es={app.statusLabelEs}>
+              {app.statusLabel}
+            </span>
+          </div>
+
+          <h2 class="app-name">{app.name}</h2>
+
+          <p class="app-desc" data-en={app.descriptionEn} data-es={app.descriptionEs}>
+            {app.descriptionEn}
+          </p>
+
+          <div class="app-tags">
+            {app.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+
+          {(app.appStoreUrl || app.webUrl) && (
+            <div class="app-links">
+              {app.appStoreUrl && (
+                <a href={app.appStoreUrl} class="app-link" target="_blank" rel="noopener noreferrer" data-en="App Store ↗" data-es="App Store ↗">App Store ↗</a>
+              )}
+              {app.webUrl && (
+                <a href={app.webUrl} class="app-link" target="_blank" rel="noopener noreferrer" data-en="Web ↗" data-es="Web ↗">Web ↗</a>
+              )}
+            </div>
+          )}
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Skills -->
+    <div id="skills" class="skills-section">
+      <p class="skills-label" data-en="Skills" data-es="Habilidades">Skills</p>
+      <div class="skills-list">
+        {skills.map((s) => (
+          <div class="skill-row">
+            <span class="skill-category">{s.category}</span>
+            <span class="skill-items">{s.items}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CV footer -->
+    <div class="cv-footer">
+      <a href="#" class="cv-btn" data-en="Download iOS CV (EN)" data-es="Descargar CV iOS (EN)">Download iOS CV (EN)</a>
+    </div>
+
+  </div>
+
+</SidebarLayout>
+
+<!-- Lang toggle -->
+<div id="lang-toggle" class="lang-toggle">
+  <button data-lang="en" class="active">EN</button>
+  <span>|</span>
+  <button data-lang="es">ES</button>
+</div>
+
+<style>
+  /* ── Sidebar content ── */
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 2rem;
+  }
+
+  .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .sidebar-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+  }
+
+  .sidebar-name:hover { color: #2563eb; }
+
+  .sidebar-role {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 1px solid #f3f4f6;
+    border-bottom: 1px solid #f3f4f6;
+    padding: 1rem 0;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #6b7280;
+    transition: color 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-link:hover,
+  .nav-link.active { color: #111827; }
+
+  .back-link {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    transition: color 0.15s;
+    margin-top: auto;
+  }
+
+  .back-link:hover { color: #374151; }
+
+  /* Mobile sidebar */
+  @media (max-width: 768px) {
+    .sidebar-content {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+      height: auto;
+    }
+
+    .sidebar-nav {
+      flex-direction: row;
+      border: none;
+      padding: 0;
+      gap: 1rem;
+    }
+
+    .back-link { margin-top: 0; }
+    .sidebar-role { display: none; }
+  }
+
+  /* ── Main ── */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 680px;
+  }
+
+  /* ── App cards grid ── */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .app-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #f3f4f6;
+    border-radius: 10px;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .app-card:hover {
+    border-color: #e5e7eb;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .app-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .status-badge {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .status-badge.live {
+    background: #f0fdf4;
+    color: #16a34a;
+  }
+
+  .status-badge.dev {
+    background: #fefce8;
+    color: #a16207;
+  }
+
+  .app-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.01em;
+  }
+
+  .app-desc {
+    font-size: 0.85rem;
+    color: #6b7280;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .app-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: #f9fafb;
+    border: 1px solid #f3f4f6;
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .app-links {
+    display: flex;
+    gap: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  .app-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #2563eb;
+    transition: color 0.15s;
+  }
+
+  .app-link:hover { color: #9333ea; }
+
+  /* ── Skills ── */
+  .skills-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px dotted #d1d5db;
+  }
+
+  .skills-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .skill-row {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .skill-category {
+    width: 100px;
+    flex-shrink: 0;
+    color: #9ca3af;
+    font-weight: 400;
+  }
+
+  .skill-items {
+    color: #374151;
+  }
+
+  /* ── CV footer ── */
+  .cv-footer {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .cv-btn {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .cv-btn:hover {
+    border-color: #9ca3af;
+    color: #111827;
+  }
+
+  /* ── Lang toggle ── */
+  .lang-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    z-index: 100;
+  }
+
+  .lang-toggle span { color: #d1d5db; font-size: 0.65rem; }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.3rem;
+    transition: color 0.15s;
+  }
+
+  .lang-toggle button.active { color: #374151; }
+  .lang-toggle button:hover:not(.active) { color: #374151; }
+</style>

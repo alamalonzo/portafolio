@@ -1,0 +1,30 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Alam Alonzo', description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="detail-layout">
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .detail-layout {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  @media (max-width: 640px) {
+    .detail-layout {
+      padding: 2rem 1.25rem 4rem;
+    }
+  }
+</style>

@@ -1,0 +1,425 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const groups = [
+  {
+    headingEn: 'Things that power my life',
+    headingEs: 'Lo que impulsa mi vida',
+    tools: [
+      {
+        name: 'Mac mini M4',
+        color: '#1c1c1e', textColor: 'rgba(255,255,255,0.7)', abbr: 'M4',
+        url: 'https://www.apple.com/mac-mini/',
+        descEn: 'The machine everything runs on. Fast, silent, and takes zero desk space.',
+        descEs: 'La máquina en la que todo corre. Rápida, silenciosa y no ocupa espacio.',
+      },
+    ],
+  },
+  {
+    headingEn: 'Things that power my apps',
+    headingEs: 'Lo que impulsa mis apps',
+    tools: [
+      {
+        name: 'Xcode',
+        color: '#1a6bdb', textColor: 'rgba(255,255,255,0.85)', abbr: 'Xc',
+        url: 'https://developer.apple.com/xcode/',
+        descEn: 'Where all the iOS development happens. Love it and hate it.',
+        descEs: 'Donde sucede todo el desarrollo iOS. Lo amo y lo odio.',
+      },
+      {
+        name: 'SwiftUI',
+        color: '#e05a2b', textColor: 'rgba(255,255,255,0.85)', abbr: 'Su',
+        url: 'https://developer.apple.com/xcode/swiftui/',
+        descEn: 'My UI framework of choice. Declarative and surprisingly powerful.',
+        descEs: 'Mi framework de UI preferido. Declarativo y sorprendentemente poderoso.',
+      },
+      {
+        name: 'CloudKit',
+        color: '#0071e3', textColor: 'rgba(255,255,255,0.85)', abbr: 'Ck',
+        url: 'https://developer.apple.com/icloud/cloudkit/',
+        descEn: 'Free sync and storage for my apps. No backend needed.',
+        descEs: 'Sincronización y almacenamiento gratis para mis apps. Sin backend.',
+      },
+      {
+        name: 'StoreKit',
+        color: '#34a853', textColor: 'rgba(255,255,255,0.85)', abbr: 'Sk',
+        url: 'https://developer.apple.com/storekit/',
+        descEn: 'For in-app purchases and subscriptions.',
+        descEs: 'Para compras dentro de la app y suscripciones.',
+      },
+      {
+        name: 'WidgetKit',
+        color: '#5e5ce6', textColor: 'rgba(255,255,255,0.85)', abbr: 'Wk',
+        url: 'https://developer.apple.com/widgets/',
+        descEn: 'Home screen widgets. More useful than most people think.',
+        descEs: 'Widgets para la pantalla de inicio. Más útiles de lo que la gente cree.',
+      },
+      {
+        name: 'TestFlight',
+        color: '#0a84ff', textColor: 'rgba(255,255,255,0.85)', abbr: 'Tf',
+        url: 'https://developer.apple.com/testflight/',
+        descEn: 'Beta testing before every App Store release.',
+        descEs: 'Pruebas beta antes de cada lanzamiento en el App Store.',
+      },
+      {
+        name: 'VS Code',
+        color: '#007acc', textColor: 'rgba(255,255,255,0.85)', abbr: 'Vs',
+        url: 'https://code.visualstudio.com/',
+        descEn: 'For everything outside of Xcode — this site included.',
+        descEs: 'Para todo lo que no es Xcode — incluyendo este sitio.',
+      },
+      {
+        name: 'GitHub',
+        color: '#161b22', textColor: 'rgba(255,255,255,0.7)', abbr: 'Gh',
+        url: 'https://github.com/',
+        descEn: 'Version control, hosting, and CI/CD all in one.',
+        descEs: 'Control de versiones, hosting y CI/CD en un solo lugar.',
+      },
+      {
+        name: 'Claude',
+        color: '#c96442', textColor: 'rgba(255,255,255,0.85)', abbr: 'Cl',
+        url: 'https://claude.ai/',
+        descEn: 'The AI assistant I use daily. Built this site with it.',
+        descEs: 'El asistente de IA que uso a diario. Construí este sitio con él.',
+      },
+    ],
+  },
+  {
+    headingEn: 'Things that power my designs',
+    headingEs: 'Lo que impulsa mis diseños',
+    tools: [
+      {
+        name: 'AutoCAD',
+        color: '#e51937', textColor: 'rgba(255,255,255,0.85)', abbr: 'Ac',
+        url: 'https://www.autodesk.com/products/autocad/',
+        descEn: 'Still the industry standard for technical drawings.',
+        descEs: 'Sigue siendo el estándar de la industria para dibujos técnicos.',
+      },
+      {
+        name: 'Revit',
+        color: '#338dcb', textColor: 'rgba(255,255,255,0.85)', abbr: 'Rv',
+        url: 'https://www.autodesk.com/products/revit/',
+        descEn: 'BIM modeling for complex projects like CEDIGLO.',
+        descEs: 'Modelado BIM para proyectos complejos como CEDIGLO.',
+      },
+      {
+        name: 'Blender',
+        color: '#e87d0d', textColor: 'rgba(255,255,255,0.85)', abbr: 'Bl',
+        url: 'https://www.blender.org/',
+        descEn: 'Free, open-source, and remarkably capable for arch visualization.',
+        descEs: 'Gratuito, de código abierto y notablemente capaz para visualización.',
+      },
+      {
+        name: '3DS Max',
+        color: '#3e7bca', textColor: 'rgba(255,255,255,0.85)', abbr: '3D',
+        url: 'https://www.autodesk.com/products/3ds-max/',
+        descEn: 'For detailed rendering and scene composition.',
+        descEs: 'Para renderizado detallado y composición de escenas.',
+      },
+      {
+        name: 'Rhino',
+        color: '#4a4a4a', textColor: 'rgba(255,255,255,0.7)', abbr: 'Rh',
+        url: 'https://www.rhino3d.com/',
+        descEn: 'Parametric modeling and complex surface work.',
+        descEs: 'Modelado paramétrico y trabajo con superficies complejas.',
+      },
+      {
+        name: 'Lumion',
+        color: '#76bc21', textColor: 'rgba(255,255,255,0.85)', abbr: 'Lu',
+        url: 'https://lumion.com/',
+        descEn: 'Real-time rendering for client presentations.',
+        descEs: 'Renderizado en tiempo real para presentaciones a clientes.',
+      },
+      {
+        name: 'Figma',
+        color: '#1e1e1e', textColor: 'rgba(255,255,255,0.7)', abbr: 'Fi',
+        url: 'https://www.figma.com/',
+        descEn: 'UI design for the apps. Sometimes architecture diagrams too.',
+        descEs: 'Diseño de UI para las apps. A veces también diagramas de arquitectura.',
+      },
+      {
+        name: 'Adobe Creative Suite',
+        color: '#ff0000', textColor: 'rgba(255,255,255,0.85)', abbr: 'Ps',
+        url: 'https://www.adobe.com/creativecloud.html',
+        descEn: 'Photoshop and Illustrator for presentations and graphics.',
+        descEs: 'Photoshop e Illustrator para presentaciones y gráficos.',
+      },
+    ],
+  },
+  {
+    headingEn: 'Things that power this site',
+    headingEs: 'Lo que impulsa este sitio',
+    tools: [
+      {
+        name: 'Astro',
+        color: '#17191e', textColor: 'rgba(255,255,255,0.7)', abbr: 'As',
+        url: 'https://astro.build/',
+        descEn: 'Static site generator. Fast, clean, and no framework required.',
+        descEs: 'Generador de sitios estáticos. Rápido, limpio y sin framework.',
+      },
+      {
+        name: 'GitHub Pages',
+        color: '#161b22', textColor: 'rgba(255,255,255,0.7)', abbr: 'Gp',
+        url: 'https://pages.github.com/',
+        descEn: 'Free hosting with automatic deploy on every push.',
+        descEs: 'Hosting gratuito con deploy automático en cada push.',
+      },
+      {
+        name: 'Cloudflare',
+        color: '#f48120', textColor: 'rgba(255,255,255,0.85)', abbr: 'Cf',
+        url: 'https://www.cloudflare.com/',
+        descEn: 'DNS, domain registrar, and CDN. The quiet layer that makes it fast.',
+        descEs: 'DNS, registrador de dominio y CDN. La capa silenciosa que lo hace rápido.',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Uses — Alam Alonzo" description="Tools and software used by Alam Alonzo.">
+
+  <div id="lang-toggle" class="lang-toggle">
+    <button data-lang="en" class="active">EN</button>
+    <span>|</span>
+    <button data-lang="es">ES</button>
+  </div>
+
+  <div class="page">
+    <div class="content">
+
+      <a href="/" class="back">← <span data-en="Back to home" data-es="Volver al inicio">Back to home</span></a>
+
+      <div class="header">
+        <h1 class="title" data-en="Uses" data-es="Herramientas">Uses</h1>
+        <p class="subtitle" data-en="Everything I rely on across architecture and iOS development." data-es="Todo en lo que confío para arquitectura y desarrollo iOS.">
+          Everything I rely on across architecture and iOS development.
+        </p>
+      </div>
+
+      <div class="groups">
+        {groups.map((group) => (
+          <div class="group">
+            <h2 class="group-heading" data-en={group.headingEn} data-es={group.headingEs}>
+              {group.headingEn}
+            </h2>
+            <ul class="tools-list">
+              {group.tools.map((tool) => (
+                <li class="tool-item">
+                  <div class="tool-top">
+                    <div class="tool-icon" style={`background:${tool.color}; color:${tool.textColor};`}>
+                      {tool.abbr}
+                    </div>
+                    <a class="tool-name" href={tool.url} target="_blank" rel="noopener noreferrer">
+                      {tool.name} <span class="arrow">↗</span>
+                    </a>
+                  </div>
+                  <p class="tool-desc" data-en={tool.descEn} data-es={tool.descEs}>
+                    {tool.descEn}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Footnote -->
+      <div class="footnote">
+        <p class="footnote-heading" data-en="Also part of my daily life" data-es="También parte de mi día a día">Also part of my daily life</p>
+        <p class="footnote-text" data-en="A surfboard I barely have time to ride · swimming goggles I use more than I admit · a very specific set of sushi chopsticks · good coffee, always." data-es="Una tabla de surf que casi no tengo tiempo de usar · googles de natación que uso más de lo que admito · unos palillos especiales para sushi · buen café, siempre.">
+          A surfboard I barely have time to ride · swimming goggles I use more than I admit · a very specific set of sushi chopsticks · good coffee, always.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  .page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 2rem 6rem;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 42rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .back {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    transition: color 0.15s;
+  }
+  .back:hover { color: #374151; }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111827;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* ── Groups ── */
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .group-heading {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dotted #e5e7eb;
+  }
+
+  /* ── Tools ── */
+  .tools-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .tool-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tool-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .tool-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .tool-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #111827;
+    transition: color 0.15s;
+    line-height: 1.3;
+  }
+
+  .tool-name:hover {
+    color: #2563eb;
+  }
+
+  .arrow {
+    font-size: 0.7rem;
+    color: #d1d5db;
+    transition: color 0.15s;
+  }
+
+  .tool-name:hover .arrow {
+    color: #2563eb;
+  }
+
+  .tool-desc {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    line-height: 1.5;
+    padding-left: calc(40px + 0.75rem);
+  }
+
+  .tool-desc::before {
+    content: '• ';
+    color: #d1d5db;
+  }
+
+  /* ── Footnote ── */
+  .footnote {
+    border-top: 1px dotted #e5e7eb;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footnote-heading {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footnote-text {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── Lang toggle ── */
+  .lang-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    z-index: 100;
+  }
+
+  .lang-toggle span { color: #d1d5db; font-size: 0.65rem; }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.3rem;
+    transition: color 0.15s;
+  }
+
+  .lang-toggle button.active { color: #374151; }
+  .lang-toggle button:hover:not(.active) { color: #374151; }
+</style>

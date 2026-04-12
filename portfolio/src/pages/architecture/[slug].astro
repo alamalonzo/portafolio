@@ -1,0 +1,347 @@
+---
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('architecture');
+  const projects = entries.sort((a, b) => a.data.order - b.data.order);
+  return projects.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: {
+      project: entry.data,
+      prev: projects[i - 1] ? { ...projects[i - 1].data, slug: projects[i - 1].id } : null,
+      next: projects[i + 1] ? { ...projects[i + 1].data, slug: projects[i + 1].id } : null,
+    },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+---
+
+<DetailLayout
+  title={`${project.title} — Alam Alonzo`}
+  description={project.descriptionEn[0]}
+>
+
+  <!-- Back link -->
+  <a href="/architecture" class="back">
+    <span data-en="← Architecture" data-es="← Arquitectura">← Architecture</span>
+  </a>
+
+  <!-- Header -->
+  <header class="project-header">
+    <h1 class="project-title">{project.title}</h1>
+    <p class="project-meta">{project.type} · {project.year} · {project.location} · {project.area}</p>
+  </header>
+
+  <!-- Hero image placeholder -->
+  <div class="hero" style={`background:${project.heroColor};`}></div>
+
+  <!-- Overview: specs + description -->
+  <div class="overview">
+    <div class="specs">
+      <div class="spec-row">
+        <span class="spec-label" data-en="Area" data-es="Área">Area</span>
+        <span class="spec-value">{project.area}</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label" data-en="Year" data-es="Año">Year</span>
+        <span class="spec-value">{project.year}</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label" data-en="Location" data-es="Ubicación">Location</span>
+        <span class="spec-value">{project.location}</span>
+      </div>
+      {project.budget && (
+        <div class="spec-row">
+          <span class="spec-label" data-en="Budget" data-es="Presupuesto">Budget</span>
+          <span class="spec-value">{project.budget}</span>
+        </div>
+      )}
+      <div class="spec-row">
+        <span class="spec-label" data-en="Duration" data-es="Duración">Duration</span>
+        <span class="spec-value">{project.duration}</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label" data-en="Status" data-es="Estado">Status</span>
+        <span class="spec-value">{project.status}</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label" data-en="Role" data-es="Rol">Role</span>
+        <span class="spec-value">{project.role}</span>
+      </div>
+    </div>
+
+    <div class="description">
+      {project.descriptionEn.map((para, i) => (
+        <p data-en={para} data-es={project.descriptionEs[i]}>{para}</p>
+      ))}
+    </div>
+  </div>
+
+  <!-- Photo gallery -->
+  <div class="gallery">
+    <div class="gallery-main" style={`background:${project.photos[0]};`}></div>
+    <div class="gallery-row">
+      {project.photos.slice(1, 3).map((color) => (
+        <div class="gallery-half" style={`background:${color};`}></div>
+      ))}
+    </div>
+    <div class="gallery-row">
+      {project.photos.slice(3).map((color) => (
+        <div class="gallery-half" style={`background:${color};`}></div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Results (only if available) -->
+  {project.results && project.results.length > 0 && (
+    <div class="results">
+      {project.results.map((r) => (
+        <div class="result-item">
+          <span class="result-value">{r.value}</span>
+          <span class="result-label">{r.label}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <!-- PM section (CEDIGLO only) -->
+  {project.isPM && (
+    <div class="pm-section">
+      <p class="pm-eyebrow" data-en="Project Management" data-es="Project Management">Project Management</p>
+      <h2 class="pm-title" data-en="Beyond architecture" data-es="Más allá de la arquitectura">Beyond architecture</h2>
+      <div class="pm-body">
+        <p data-en="CEDIGLO was my most complex project management challenge. I was responsible for the full delivery lifecycle: assembling the consultant team, writing and negotiating contracts, building and tracking a RD$40M+ budget, and resolving field conflicts between structural, MEP, and architectural work in real time." data-es="CEDIGLO fue mi reto más complejo de project management. Fui responsable del ciclo completo de entrega: armar el equipo de consultores, redactar y negociar contratos, construir y dar seguimiento a un presupuesto de RD$40M+, y resolver conflictos en campo entre los trabajos estructurales, MEP y arquitectónicos en tiempo real.">
+          CEDIGLO was my most complex project management challenge. I was responsible for the full delivery lifecycle: assembling the consultant team, writing and negotiating contracts, building and tracking a RD$40M+ budget, and resolving field conflicts between structural, MEP, and architectural work in real time.
+        </p>
+        <p data-en="The project was delivered on schedule. Download my full PM CV for detail on methodology, tools, and team structure." data-es="El proyecto fue entregado en tiempo. Descarga mi CV de PM completo para detalles sobre metodología, herramientas y estructura del equipo.">
+          The project was delivered on schedule. Download my full PM CV for detail on methodology, tools, and team structure.
+        </p>
+      </div>
+      <a href="#" class="pm-cv-btn" data-en="Download PM CV" data-es="Descargar CV PM">Download PM CV</a>
+    </div>
+  )}
+
+  <!-- Project navigation -->
+  <nav class="proj-nav">
+    {prev ? (
+      <a href={`/architecture/${prev.slug}`} class="proj-nav-link prev">
+        <span class="proj-nav-dir" data-en="← Previous" data-es="← Anterior">← Previous</span>
+        <span class="proj-nav-title">{prev.title}</span>
+      </a>
+    ) : <span />}
+    {next ? (
+      <a href={`/architecture/${next.slug}`} class="proj-nav-link next">
+        <span class="proj-nav-dir" data-en="Next →" data-es="Siguiente →">Next →</span>
+        <span class="proj-nav-title">{next.title}</span>
+      </a>
+    ) : <span />}
+  </nav>
+
+  <!-- Lang toggle -->
+  <div id="lang-toggle" class="lang-toggle">
+    <button data-lang="en" class="active">EN</button>
+    <span>|</span>
+    <button data-lang="es">ES</button>
+  </div>
+
+</DetailLayout>
+
+<style>
+  .back {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    transition: color 0.15s;
+  }
+  .back:hover { color: #374151; }
+
+  .project-header { margin-bottom: 2rem; }
+
+  .project-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111827;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-meta {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+  }
+
+  .hero {
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  @media (max-width: 640px) { .hero { height: 240px; } }
+
+  .overview {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  @media (max-width: 640px) {
+    .overview { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .specs { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .spec-row { display: flex; flex-direction: column; gap: 0.1rem; }
+
+  .spec-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .spec-value { font-size: 0.85rem; color: #374151; }
+
+  .description { display: flex; flex-direction: column; gap: 1rem; }
+
+  .description p { font-size: 0.95rem; color: #374151; line-height: 1.75; }
+
+  .gallery { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 3rem; }
+
+  .gallery-main {
+    width: 100%;
+    height: 360px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .gallery-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+  .gallery-half { height: 200px; border-radius: 6px; border: 1px solid #e5e7eb; }
+
+  @media (max-width: 640px) {
+    .gallery-main { height: 220px; }
+    .gallery-half { height: 140px; }
+  }
+
+  .results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+    border-top: 1px dotted #d1d5db;
+    border-bottom: 1px dotted #d1d5db;
+  }
+
+  .result-item { display: flex; flex-direction: column; gap: 0.25rem; }
+
+  .result-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .result-label { font-size: 0.7rem; color: #9ca3af; letter-spacing: 0.04em; }
+
+  .pm-section {
+    background: #fafafa;
+    border: 1px solid #f3f4f6;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pm-eyebrow {
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pm-title { font-size: 1.25rem; font-weight: 600; color: #111827; letter-spacing: -0.01em; }
+
+  .pm-body { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .pm-body p { font-size: 0.9rem; color: #6b7280; line-height: 1.7; }
+
+  .pm-cv-btn {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    transition: border-color 0.15s, color 0.15s;
+    align-self: flex-start;
+  }
+
+  .pm-cv-btn:hover { border-color: #9ca3af; color: #111827; }
+
+  .proj-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 2rem;
+    border-top: 1px solid #f3f4f6;
+    gap: 1rem;
+  }
+
+  .proj-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 45%;
+    transition: opacity 0.15s;
+  }
+
+  .proj-nav-link:hover { opacity: 0.65; }
+  .proj-nav-link.next { text-align: right; margin-left: auto; }
+
+  .proj-nav-dir { font-size: 0.7rem; color: #9ca3af; letter-spacing: 0.04em; }
+  .proj-nav-title { font-size: 0.9rem; font-weight: 500; color: #111827; }
+
+  .lang-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    z-index: 100;
+  }
+
+  .lang-toggle span { color: #d1d5db; font-size: 0.65rem; }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.3rem;
+    transition: color 0.15s;
+  }
+
+  .lang-toggle button.active { color: #374151; }
+  .lang-toggle button:hover:not(.active) { color: #374151; }
+</style>
