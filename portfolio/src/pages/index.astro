@@ -39,12 +39,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="icon arch" style="background:#161c22;"></div>
             <span class="tip">Bolero 21</span>
           </a>
+          <a href="/architecture" class="slot" aria-label="Urbebox">
+            <div class="icon arch" style="background:#1e2c1e;"></div>
+            <span class="tip">Urbebox</span>
+          </a>
         </div>
+      </div>
+
+      <!-- Book -->
+      <div class="row">
+        <span data-en="I write about architecture." data-es="Escribo sobre arquitectura.">I write about architecture.</span>
+        <a href="https://www.amazon.com/101-Lecciones-estudio-arquitectura-Spanish/dp/9945293745/" target="_blank" rel="noopener noreferrer" class="slot" aria-label="101 Lecciones de un estudio de arquitectura">
+          <div class="icon book-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <span class="tip">101 Lecciones</span>
+        </a>
       </div>
 
       <!-- iOS Apps -->
       <div class="row">
-        <span data-en="I also build iOS apps." data-es="También creo apps para iOS.">I also build iOS apps.</span>
+        <span data-en="I build iOS apps." data-es="Creo apps para iOS.">I build iOS apps.</span>
         <div class="fan">
           <a href="/apps" class="slot" aria-label="Jergas">
             <div class="icon" style="background:#1a3d2b;">J</div>
@@ -117,8 +132,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <p data-en="I'm an architect based in the Dominican Republic with 10+ years of experience across residential, commercial, and medical projects. I design and supervise construction myself — from early concept through the last coat of paint." data-es="Soy arquitecto en República Dominicana con más de 10 años de experiencia en proyectos residenciales, comerciales y médicos. Diseño y superviso la construcción yo mismo — desde el concepto inicial hasta el último detalle.">
               I'm an architect based in the Dominican Republic with 10+ years of experience across residential, commercial, and medical projects. I design and supervise construction myself — from early concept through the last coat of paint.
             </p>
-            <p data-en="On the side, I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints." data-es="En paralelo, creo apps para iOS en Swift. Las dos disciplinas se complementan más de lo que la gente espera — ambas tratan de resolver problemas dentro de limitaciones precisas.">
-              On the side, I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints.
+            <p data-en="I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints." data-es="Creo apps para iOS en Swift. Las dos disciplinas se complementan más de lo que la gente espera — ambas tratan de resolver problemas dentro de limitaciones precisas.">
+              I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints.
             </p>
           </div>
         </details>
@@ -243,6 +258,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .arch { border-radius: 0.5rem; }
+
+  .book-icon { background: #1c1a2e; border-radius: 0.5rem; }
 
   .social-x  { background: #000; }
   .social-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }

@@ -1,0 +1,302 @@
+---
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import { apps } from '../../data/apps.js';
+
+export function getStaticPaths() {
+  return apps
+    .filter((app) => app.status === 'dev')
+    .map((app) => ({ params: { slug: app.slug }, props: { app } }));
+}
+
+const { app } = Astro.props;
+---
+
+<DetailLayout
+  title={`${app.name} — Alam Alonzo`}
+  description={app.descriptionEn}
+>
+
+  <!-- Lang toggle -->
+  <div id="lang-toggle" class="lang-toggle">
+    <button data-lang="en" class="active">EN</button>
+    <span>|</span>
+    <button data-lang="es">ES</button>
+  </div>
+
+  <!-- Back link -->
+  <a href="/apps" class="back">
+    <span data-en="← Apps" data-es="← Apps">← Apps</span>
+  </a>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-header-inner">
+      <div class="app-icon" style={`background:${app.bg};`}>{app.letter}</div>
+      <div class="app-header-text">
+        <h1 class="app-title">{app.name}</h1>
+        <p class="app-tagline" data-en={app.taglineEn} data-es={app.taglineEs}>{app.taglineEn}</p>
+      </div>
+      <span class="status-badge dev" data-en={app.statusLabel} data-es={app.statusLabelEs}>{app.statusLabel}</span>
+    </div>
+  </header>
+
+  <!-- Hero image area -->
+  <div class="hero" style={`background:${app.heroColor};`}>
+    <span class="hero-placeholder" data-en="App screenshot coming soon" data-es="Captura de pantalla próximamente">App screenshot coming soon</span>
+  </div>
+
+  <!-- Description -->
+  <section class="section">
+    <p class="section-label" data-en="About" data-es="Sobre la app">About</p>
+    <div class="desc-body">
+      {app.fullDescriptionEn.map((para, i) => (
+        <p data-en={para} data-es={app.fullDescriptionEs[i]}>{para}</p>
+      ))}
+    </div>
+  </section>
+
+  <!-- Tech stack -->
+  <section class="section">
+    <p class="section-label" data-en="Tech Stack" data-es="Stack Tecnológico">Tech Stack</p>
+    <div class="tech-grid">
+      {app.tech.map((t) => (
+        <div class="tech-row">
+          <span class="tech-category">{t.category}</span>
+          <span class="tech-items">{t.items}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <p class="section-label" data-en="Features" data-es="Funcionalidades">Features</p>
+    <ul class="features-list">
+      {app.featuresEn.map((f, i) => (
+        <li data-en={f} data-es={app.featuresEs[i]}>{f}</li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Status -->
+  <section class="section status-section">
+    <p class="section-label" data-en="Status" data-es="Estado">Status</p>
+    <p class="status-note" data-en={app.statusNoteEn} data-es={app.statusNoteEs}>{app.statusNoteEn}</p>
+  </section>
+
+</DetailLayout>
+
+<style>
+  /* ── Lang toggle ── */
+  .lang-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    z-index: 100;
+  }
+
+  .lang-toggle span { color: #d1d5db; font-size: 0.65rem; }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.3rem;
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .lang-toggle button.active { color: #374151; }
+  .lang-toggle button:hover:not(.active) { color: #374151; }
+
+  /* ── Back ── */
+  .back {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+    margin-bottom: 2rem;
+    transition: color 0.15s;
+  }
+  .back:hover { color: #374151; }
+
+  /* ── Header ── */
+  .app-header {
+    margin-bottom: 2rem;
+  }
+
+  .app-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .app-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .app-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .app-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111827;
+    line-height: 1.1;
+  }
+
+  .app-tagline {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 300;
+  }
+
+  .status-badge {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  .status-badge.dev {
+    background: #fefce8;
+    color: #a16207;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    width: 100%;
+    height: 420px;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-placeholder {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 640px) { .hero { height: 220px; } }
+
+  /* ── Sections ── */
+  .section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px dotted #e5e7eb;
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Description ── */
+  .desc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .desc-body p {
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 60ch;
+  }
+
+  /* ── Tech stack ── */
+  .tech-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .tech-row {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .tech-category {
+    color: #9ca3af;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+
+  .tech-items {
+    color: #374151;
+    font-weight: 400;
+  }
+
+  /* ── Features ── */
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .features-list li {
+    font-size: 0.9rem;
+    color: #374151;
+    font-weight: 300;
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .features-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #9ca3af;
+  }
+
+  /* ── Status note ── */
+  .status-note {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+</style>
