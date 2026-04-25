@@ -21,6 +21,9 @@ photos:
   - "/architecture/oficina-corporativo-2020/slider-01.jpg"
   - "/architecture/oficina-corporativo-2020/slider-02.jpg"
   - "/architecture/oficina-corporativo-2020/slider-03.jpg"
+  - "/architecture/oficina-corporativo-2020/gallery-01.jpg"
+  - "/architecture/oficina-corporativo-2020/gallery-02.jpg"
+  - "/architecture/oficina-corporativo-2020/gallery-03.jpg"
 gallery:
   - "/architecture/oficina-corporativo-2020/gallery-01.jpg"
   - "/architecture/oficina-corporativo-2020/gallery-02.jpg"

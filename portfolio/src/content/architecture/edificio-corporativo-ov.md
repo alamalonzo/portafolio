@@ -20,6 +20,9 @@ photos:
   - "/architecture/edificio-corporativo-ov/slider-01.jpg"
   - "/architecture/edificio-corporativo-ov/slider-02.jpg"
   - "/architecture/edificio-corporativo-ov/slider-03.jpg"
+  - "/architecture/edificio-corporativo-ov/gallery-01.jpg"
+  - "/architecture/edificio-corporativo-ov/gallery-02.jpg"
+  - "/architecture/edificio-corporativo-ov/gallery-03.jpg"
 gallery:
   - "/architecture/edificio-corporativo-ov/gallery-01.jpg"
   - "/architecture/edificio-corporativo-ov/gallery-02.jpg"

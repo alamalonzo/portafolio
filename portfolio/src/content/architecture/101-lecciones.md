@@ -27,9 +27,9 @@ skills:
   - Project Management
   - Architecture Practice
 descriptionEn:
-  - "A book drawn from a decade inside a Caribbean architecture studio, documenting 101 lessons pulled from everyday professional practice — from project management and client relationships to the universal dilemmas that any studio faces regardless of geography."
+  - "A book drawn from a decade inside a Caribbean architecture studio, documenting 101 lessons pulled from everyday professional practice from project management and client relationships to the universal dilemmas that any studio faces regardless of geography."
   - "Research, writing, and full editorial production. Published on Amazon in print format in 2025."
 descriptionEs:
-  - "Libro basado en una década de experiencia dentro de un estudio de arquitectura en el Caribe, documentando 101 lecciones extraídas de la práctica profesional cotidiana — desde la gestión de proyectos y la relación con clientes, hasta los dilemas universales que enfrenta cualquier estudio sin importar su contexto geográfico."
+  - "Libro basado en una década de experiencia dentro de un estudio de arquitectura en el Caribe, documentando 101 lecciones extraídas de la práctica profesional cotidiana desde la gestión de proyectos y la relación con clientes, hasta los dilemas universales que enfrenta cualquier estudio sin importar su contexto geográfico."
   - "Investigación, redacción y producción editorial completa. Publicado en Amazon en formato físico en 2025."
 ---

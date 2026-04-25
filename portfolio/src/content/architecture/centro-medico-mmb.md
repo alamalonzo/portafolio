@@ -23,6 +23,9 @@ photos:
   - "/architecture/centro-medico-mmb/slider-02.jpg"
   - "/architecture/centro-medico-mmb/slider-03.jpg"
   - "/architecture/centro-medico-mmb/slider-04.jpg"
+  - "/architecture/centro-medico-mmb/gallery-01.jpg"
+  - "/architecture/centro-medico-mmb/gallery-02.jpg"
+  - "/architecture/centro-medico-mmb/gallery-03.jpg"
 gallery:
   - "/architecture/centro-medico-mmb/gallery-01.jpg"
   - "/architecture/centro-medico-mmb/gallery-02.jpg"

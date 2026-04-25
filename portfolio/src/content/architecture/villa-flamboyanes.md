@@ -19,6 +19,8 @@ order: 9
 photos:
   - "/architecture/villa-flamboyanes/slider-01.jpg"
   - "/architecture/villa-flamboyanes/slider-02.jpg"
+  - "/architecture/villa-flamboyanes/gallery-01.jpg"
+  - "/architecture/villa-flamboyanes/gallery-02.jpg"
 gallery:
   - "/architecture/villa-flamboyanes/gallery-01.jpg"
   - "/architecture/villa-flamboyanes/gallery-02.jpg"

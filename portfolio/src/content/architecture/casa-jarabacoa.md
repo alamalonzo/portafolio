@@ -22,6 +22,12 @@ photos:
   - "/architecture/casa-jarabacoa/slider-01.jpg"
   - "/architecture/casa-jarabacoa/slider-02.jpg"
   - "/architecture/casa-jarabacoa/slider-03.jpg"
+  - "/architecture/casa-jarabacoa/gallery-01.jpg"
+  - "/architecture/casa-jarabacoa/gallery-02.jpg"
+  - "/architecture/casa-jarabacoa/gallery-03.jpg"
+  - "/architecture/casa-jarabacoa/gallery-04.jpg"
+  - "/architecture/casa-jarabacoa/gallery-05.jpg"
+  - "/architecture/casa-jarabacoa/gallery-06.jpg"
 gallery:
   - "/architecture/casa-jarabacoa/gallery-01.jpg"
   - "/architecture/casa-jarabacoa/gallery-02.jpg"

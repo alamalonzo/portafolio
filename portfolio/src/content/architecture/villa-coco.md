@@ -23,6 +23,10 @@ photos:
   - "/architecture/villa-coco/slider-03.jpg"
   - "/architecture/villa-coco/slider-04.jpg"
   - "/architecture/villa-coco/slider-05.jpg"
+  - "/architecture/villa-coco/gallery-01.jpg"
+  - "/architecture/villa-coco/gallery-02.jpg"
+  - "/architecture/villa-coco/gallery-03.jpg"
+  - "/architecture/villa-coco/gallery-04.jpg"
 gallery:
   - "/architecture/villa-coco/gallery-01.jpg"
   - "/architecture/villa-coco/gallery-02.jpg"

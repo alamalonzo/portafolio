@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { bio } from '../data/bio';
 ---
 
 <BaseLayout
@@ -19,7 +20,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- Name block -->
       <div class="name-block">
-        <h1 class="name">ALAM ALONZO</h1>
+        <div class="name-row">
+          <h1 class="name">ALAM ALONZO</h1>
+          <img src="/images/avatar.png" alt="Alam Alonzo" class="avatar" />
+        </div>
         <p class="subtitle" data-en="Architect & iOS Developer" data-es="Arquitecto & iOS Developer">Architect & iOS Developer</p>
       </div>
 
@@ -63,8 +67,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="row">
         <span data-en="I build iOS apps." data-es="Creo apps para iOS.">I build iOS apps.</span>
         <div class="fan">
-          <a href="#" class="slot" aria-label="Jergas">
-            <div class="icon" style="background:#1a3d2b;">J</div>
+          <a href="/apps" class="slot" aria-label="Jergas">
+            <img src="/images/apps/jergas.jpg" alt="Jergas" class="icon app-icon" />
             <span class="tip">Jergas</span>
           </a>
           <a href="/apps/bimio" class="slot" aria-label="Bimio">
@@ -84,13 +88,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- CTA -->
       <div class="row mt">
-        <span data-en="If you need an architect or iOS developer," data-es="Si necesitas un arquitecto o desarrollador iOS,">If you need an architect or iOS developer,</span>
+        <span data-en="If you need an architect, iOS developer, or project manager," data-es="Si necesitas un arquitecto, desarrollador iOS, o project manager,">If you need an architect, iOS developer, or project manager,</span>
         <a href="mailto:alonzo.alam@gmail.com" class="link" data-en="let's work together :)" data-es="trabajemos juntos :)">let's work together :)</a>
       </div>
 
       <!-- Social -->
       <div class="row mt">
-        <span data-en="I also post regularly on these platforms" data-es="También publico en estas plataformas">I also post regularly on these platforms</span>
+        <span data-en="You can also find me on these platforms" data-es="También puedes conseguirme en estas plataformas">You can also find me on these platforms</span>
         <div class="fan">
           <a href="https://x.com/alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="X">
             <div class="icon social-x">
@@ -104,12 +108,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
             <span class="tip">@alamalonzo</span>
           </a>
-          <a href="https://tiktok.com/@alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="TikTok">
-            <div class="icon social-tt">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.54a8.28 8.28 0 004.84 1.54V7.63a4.85 4.85 0 01-1.07-.94z"/></svg>
-            </div>
-            <span class="tip">@alamalonzo</span>
-          </a>
           <a href="https://linkedin.com/in/alamalonzo" target="_blank" rel="noopener noreferrer" class="slot" aria-label="LinkedIn">
             <div class="icon social-li">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -117,12 +115,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span class="tip">@alamalonzo</span>
           </a>
         </div>
-      </div>
-
-      <!-- Tools -->
-      <div class="row">
-        <span data-en="Curious about my tools?" data-es="¿Curioso sobre mis herramientas?">Curious about my tools?</span>
-        <a href="/uses" class="link" data-en="Click here." data-es="Haz click aquí.">Click here.</a>
       </div>
 
       <!-- Separator + Footer -->
@@ -135,12 +127,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span data-en="Want to know more about me?" data-es="¿Quieres saber más sobre mí?">Want to know more about me?</span>
           </summary>
           <div class="about-body">
-            <p data-en="I'm an architect based in the Dominican Republic with 10+ years of experience across residential, commercial, and medical projects. I design and supervise construction myself — from early concept through the last coat of paint." data-es="Soy arquitecto en República Dominicana con más de 10 años de experiencia en proyectos residenciales, comerciales y médicos. Diseño y superviso la construcción yo mismo — desde el concepto inicial hasta el último detalle.">
-              I'm an architect based in the Dominican Republic with 10+ years of experience across residential, commercial, and medical projects. I design and supervise construction myself — from early concept through the last coat of paint.
-            </p>
-            <p data-en="I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints." data-es="Creo apps para iOS en Swift. Las dos disciplinas se complementan más de lo que la gente espera — ambas tratan de resolver problemas dentro de limitaciones precisas.">
-              I build iOS apps in Swift. I find the two disciplines complement each other more than people expect — both are about solving problems within tight constraints.
-            </p>
+            {bio.en.map((para, i) => (
+              <p data-en={para} data-es={bio.es[i]}>{para}</p>
+            ))}
           </div>
         </details>
 
@@ -155,6 +144,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <span data-en="See my iOS apps." data-es="Ver mis apps de iOS.">See my iOS apps.</span>
           <a href="/apps" class="link" data-en=" Click here." data-es=" Haz click aquí."> Click here.</a>
         </span>
+
+        <!-- Line 4: email -->
+        <div class="contact-email">
+          <a href="mailto:alonzo.alam@gmail.com">alonzo.alam@gmail.com</a>
+        </div>
       </div>
 
     </div>
@@ -194,6 +188,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     flex-direction: column;
     gap: 0.4rem;
     margin-bottom: 1rem;
+  }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .avatar {
+    width: clamp(2rem, 5vw, 2.75rem);
+    height: clamp(2rem, 5vw, 2.75rem);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   }
 
   .name {
@@ -265,6 +275,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .arch { border-radius: 0.5rem; object-fit: cover; }
 
+  .app-icon { object-fit: cover; padding: 0; }
+
   .ver-todos {
     background: #f3f4f6;
     color: #9ca3af;
@@ -275,6 +287,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .book-icon { border-radius: 0.5rem; object-fit: cover; background: #1c1a2e; }
+
+  /* ── Contact email (footer) ── */
+  .contact-email {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-family: var(--font-mono, ui-monospace, 'SF Mono', Menlo, monospace);
+    color: #6b7280;
+  }
+
+  .contact-email a {
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .contact-email a:hover {
+    color: #111827;
+    border-bottom-color: #111827;
+  }
 
   .social-x  { background: #000; }
   .social-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }

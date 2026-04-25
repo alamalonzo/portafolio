@@ -22,6 +22,13 @@ photos:
   - "/architecture/bolero-21/slider-02.jpg"
   - "/architecture/bolero-21/slider-03.jpg"
   - "/architecture/bolero-21/slider-04.jpg"
+  - "/architecture/bolero-21/gallery-01.jpg"
+  - "/architecture/bolero-21/gallery-02.jpg"
+  - "/architecture/bolero-21/gallery-03.jpg"
+  - "/architecture/bolero-21/gallery-04.jpg"
+  - "/architecture/bolero-21/gallery-05.jpg"
+  - "/architecture/bolero-21/gallery-06.jpg"
+  - "/architecture/bolero-21/gallery-07.jpg"
 gallery:
   - "/architecture/bolero-21/gallery-01.jpg"
   - "/architecture/bolero-21/gallery-02.jpg"

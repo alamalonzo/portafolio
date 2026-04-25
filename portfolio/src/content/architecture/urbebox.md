@@ -18,6 +18,10 @@ order: 10
 photos:
   - "/architecture/urbebox/slider-01.jpg"
   - "/architecture/urbebox/slider-02.jpg"
+  - "/architecture/urbebox/gallery-01.jpg"
+  - "/architecture/urbebox/gallery-02.jpg"
+  - "/architecture/urbebox/gallery-03.jpg"
+  - "/architecture/urbebox/gallery-04.jpg"
 gallery:
   - "/architecture/urbebox/gallery-01.jpg"
   - "/architecture/urbebox/gallery-02.jpg"
