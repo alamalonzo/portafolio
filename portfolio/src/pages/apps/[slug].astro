@@ -1,19 +1,22 @@
 ---
 import DetailLayout from '../../layouts/DetailLayout.astro';
-import { apps } from '../../data/apps.js';
+import { getCollection, render } from 'astro:content';
 
-export function getStaticPaths() {
-  return apps
-    .filter((app) => app.status === 'dev')
-    .map((app) => ({ params: { slug: app.slug }, props: { app } }));
+export async function getStaticPaths() {
+  const entries = await getCollection('apps');
+  return entries
+    .filter((entry) => entry.data.status === 'dev')
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
-const { app } = Astro.props;
+const { entry } = Astro.props;
+const app = entry.data;
+const { Content } = await render(entry);
 ---
 
 <DetailLayout
   title={`${app.name} — Alam Alonzo`}
-  description={app.descriptionEn}
+  description={app.resumen}
 >
 
   <!-- Lang toggle -->
@@ -24,9 +27,7 @@ const { app } = Astro.props;
   </div>
 
   <!-- Back link -->
-  <a href="/apps" class="back">
-    <span data-en="← Apps" data-es="← Apps">← Apps</span>
-  </a>
+  <a href="/apps" class="back">← Apps</a>
 
   <!-- Header -->
   <header class="app-header">
@@ -34,55 +35,66 @@ const { app } = Astro.props;
       <div class="app-icon" style={`background:${app.bg};`}>{app.letter}</div>
       <div class="app-header-text">
         <h1 class="app-title">{app.name}</h1>
-        <p class="app-tagline" data-en={app.taglineEn} data-es={app.taglineEs}>{app.taglineEn}</p>
+        <p class="app-tagline" data-en={app.tagline} data-es={app.taglineEs || app.tagline}>{app.tagline}</p>
       </div>
-      <span class="status-badge dev" data-en={app.statusLabel} data-es={app.statusLabelEs}>{app.statusLabel}</span>
+      <span class="status-badge dev" data-en={app.statusLabel} data-es={app.statusLabelEs || app.statusLabel}>{app.statusLabel}</span>
     </div>
   </header>
 
   <!-- Hero image area -->
   <div class="hero" style={`background:${app.heroColor};`}>
-    <span class="hero-placeholder" data-en="App screenshot coming soon" data-es="Captura de pantalla próximamente">App screenshot coming soon</span>
+    <span class="hero-placeholder" data-en="Screenshot coming soon" data-es="Captura de pantalla próximamente">Screenshot coming soon</span>
   </div>
 
   <!-- Description -->
   <section class="section">
-    <p class="section-label" data-en="About" data-es="Sobre la app">About</p>
+    <p class="section-label" data-en="About the app" data-es="Sobre la app">About the app</p>
     <div class="desc-body">
-      {app.fullDescriptionEn.map((para, i) => (
-        <p data-en={para} data-es={app.fullDescriptionEs[i]}>{para}</p>
-      ))}
+      <Content />
     </div>
   </section>
 
   <!-- Tech stack -->
-  <section class="section">
-    <p class="section-label" data-en="Tech Stack" data-es="Stack Tecnológico">Tech Stack</p>
-    <div class="tech-grid">
-      {app.tech.map((t) => (
-        <div class="tech-row">
-          <span class="tech-category">{t.category}</span>
-          <span class="tech-items">{t.items}</span>
-        </div>
-      ))}
-    </div>
-  </section>
+  {app.tech && app.tech.length > 0 && (
+    <section class="section">
+      <p class="section-label" data-en="Tech Stack" data-es="Stack Tecnológico">Tech Stack</p>
+      <div class="tech-grid">
+        {app.tech.map((t) => (
+          <div class="tech-row">
+            <span class="tech-category">{t.category}</span>
+            <span class="tech-items">{t.items}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- Features -->
-  <section class="section">
-    <p class="section-label" data-en="Features" data-es="Funcionalidades">Features</p>
-    <ul class="features-list">
-      {app.featuresEn.map((f, i) => (
-        <li data-en={f} data-es={app.featuresEs[i]}>{f}</li>
-      ))}
-    </ul>
-  </section>
+  {app.features && app.features.length > 0 && (
+    <section class="section features-section">
+      <p class="section-label" data-en="Features" data-es="Funcionalidades">Features</p>
+      <ul class="features-list features-en">
+        {app.features.map((f) => (
+          <li>{f}</li>
+        ))}
+      </ul>
+      {app.featuresEs && app.featuresEs.length > 0 && (
+        <ul class="features-list features-es" style="display:none;">
+          {app.featuresEs.map((f) => (
+            <li>{f}</li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )}
 
   <!-- Status -->
-  <section class="section status-section">
-    <p class="section-label" data-en="Status" data-es="Estado">Status</p>
-    <p class="status-note" data-en={app.statusNoteEn} data-es={app.statusNoteEs}>{app.statusNoteEn}</p>
-  </section>
+  {app.statusNote && (
+    <section class="section status-section">
+      <p class="section-label" data-en="Status" data-es="Estado">Status</p>
+      <p class="status-note" data-en={app.statusNote} data-es={app.statusNoteEs || app.statusNote}>{app.statusNote}</p>
+    </section>
+  )}
 
 </DetailLayout>
 
@@ -191,7 +203,7 @@ const { app } = Astro.props;
   /* ── Hero ── */
   .hero {
     width: 100%;
-    height: 420px;
+    aspect-ratio: 1188 / 725;
     border-radius: 10px;
     margin-bottom: 3rem;
     border: 1px solid #e5e7eb;
@@ -206,7 +218,7 @@ const { app } = Astro.props;
     letter-spacing: 0.04em;
   }
 
-  @media (max-width: 640px) { .hero { height: 220px; } }
+  /* hero uses aspect-ratio, scales naturally on mobile */
 
   /* ── Sections ── */
   .section {

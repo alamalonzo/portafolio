@@ -64,15 +64,18 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
 
         <div class="project-info">
           <h2 class="project-title">{project.data.title}</h2>
-          <p class="project-meta">{project.data.year} · {project.data.type} · {project.data.location} · {project.data.area}</p>
-          <p class="project-desc" data-en={project.data.descriptionEn[0]} data-es={project.data.descriptionEs[0]}>{project.data.descriptionEn[0]}</p>
-          <p class="project-role">{project.data.role}</p>
+          <p class="project-meta" data-en={`${project.data.year} · ${project.data.type} · ${project.data.location} · ${project.data.area}`} data-es={`${project.data.year} · ${project.data.typeEs || project.data.type} · ${project.data.locationEs || project.data.location} · ${project.data.area}`}>{project.data.year} · {project.data.type} · {project.data.location} · {project.data.area}</p>
+          <p class="project-desc" data-en={project.data.resumen} data-es={project.data.resumenEs || project.data.resumen}>{project.data.resumen}</p>
+          <p class="project-role" data-en={project.data.role} data-es={project.data.roleEs || project.data.role}>{project.data.role}</p>
         </div>
 
         <div class="project-photos">
-          {project.data.photos.slice(0, 3).map((color) => (
-            <div class="photo-thumb" style={`background:${color};`}></div>
-          ))}
+          {(() => {
+            const p = project.data.photos[0];
+            return p.startsWith('/')
+              ? <img src={p} alt={project.data.title} class="photo-main" />
+              : <div class="photo-main" style={`background:${p};`}></div>;
+          })()}
         </div>
 
       </a>
@@ -82,8 +85,8 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
     <div class="arch-footer">
       <div class="pm-block">
         <p class="pm-label" data-en="Project Management" data-es="Project Management">Project Management</p>
-        <p class="pm-text" data-en="For detailed PM work on CEDIGLO — budget management (RD$40M+), team coordination and delivery — see the full case study above." data-es="Para el trabajo de PM en CEDIGLO — gestión de presupuesto (RD$40M+), coordinación de equipo y entrega — ver el caso completo arriba.">
-          For detailed PM work on CEDIGLO — budget management (RD$40M+), team coordination and delivery — see the full case study above.
+        <p class="pm-text" data-en="For detailed PM work on Centro Médico MMB — budget management (RD$40M+), team coordination and delivery — see the full case study above." data-es="Para el trabajo de PM en Centro Médico MMB — gestión de presupuesto (RD$40M+), coordinación de equipo y entrega — ver el caso completo arriba.">
+          For detailed PM work on Centro Médico MMB — budget management (RD$40M+), team coordination and delivery — see the full case study above.
         </p>
       </div>
       <div class="cv-links">
@@ -227,8 +230,8 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
       gap: 1rem;
     }
 
-    .back-link { margin-top: 0; }
-    .sidebar-social { margin-top: 0; }
+    .back-link { display: none; }
+    .sidebar-social { display: none; }
     .sidebar-role { display: none; }
   }
 
@@ -279,9 +282,6 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
     background: #fafafa;
   }
 
-  .project-row:hover .photo-thumb {
-    transform: scale(1.04);
-  }
 
   /* Project info */
   .project-info {
@@ -324,18 +324,21 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
 
   /* Project photos */
   .project-photos {
-    display: flex;
-    gap: 0.5rem;
     flex-shrink: 0;
   }
 
-  .photo-thumb {
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
+  .photo-main {
+    width: 200px;
+    aspect-ratio: 1188 / 725;
+    border-radius: 6px;
     border: 1px solid #e5e7eb;
+    object-fit: cover;
+    display: block;
     transition: transform 0.2s ease;
-    flex-shrink: 0;
+  }
+
+  .project-row:hover .photo-main {
+    transform: scale(1.02);
   }
 
   /* ── Footer ── */
@@ -396,9 +399,8 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
       width: 100%;
     }
 
-    .photo-thumb {
-      flex: 1;
-      height: 70px;
+    .photo-main {
+      width: 100%;
     }
   }
 </style>

@@ -27,21 +27,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="row">
         <span data-en="I design and build spaces." data-es="Diseño y construyo espacios.">I design and build spaces.</span>
         <div class="fan">
-          <a href="/architecture" class="slot" aria-label="CEDIGLO">
-            <div class="icon arch" style="background:#1a1a1a;"></div>
-            <span class="tip">CEDIGLO</span>
+          <a href="/architecture/centro-medico-mmb" class="slot" aria-label="Centro Médico MMB">
+            <img src="/architecture/centro-medico-mmb/icon.jpg" alt="Centro Médico MMB" class="icon arch" />
+            <span class="tip">Centro Médico MMB</span>
           </a>
-          <a href="/architecture" class="slot" aria-label="Casa Jarabacoa">
-            <div class="icon arch" style="background:#221c16;"></div>
+          <a href="/architecture/casa-jarabacoa" class="slot" aria-label="Casa Jarabacoa">
+            <img src="/architecture/casa-jarabacoa/icon.jpg" alt="Casa Jarabacoa" class="icon arch" />
             <span class="tip">Casa Jarabacoa</span>
           </a>
-          <a href="/architecture" class="slot" aria-label="Bolero 21">
-            <div class="icon arch" style="background:#161c22;"></div>
+          <a href="/architecture/bolero-21" class="slot" aria-label="Bolero 21">
+            <img src="/architecture/bolero-21/icon.jpg" alt="Bolero 21" class="icon arch" />
             <span class="tip">Bolero 21</span>
           </a>
-          <a href="/architecture" class="slot" aria-label="Urbebox">
-            <div class="icon arch" style="background:#1e2c1e;"></div>
+          <a href="/architecture/urbebox" class="slot" aria-label="Urbebox">
+            <img src="/architecture/urbebox/icon.jpg" alt="Urbebox" class="icon arch" />
             <span class="tip">Urbebox</span>
+          </a>
+          <a href="/architecture" class="slot" aria-label="See all">
+            <div class="icon arch ver-todos">···</div>
+            <span class="tip" data-en="See all" data-es="Ver todos">See all</span>
           </a>
         </div>
       </div>
@@ -50,9 +54,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="row">
         <span data-en="I write about architecture." data-es="Escribo sobre arquitectura.">I write about architecture.</span>
         <a href="https://www.amazon.com/101-Lecciones-estudio-arquitectura-Spanish/dp/9945293745/" target="_blank" rel="noopener noreferrer" class="slot" aria-label="101 Lecciones de un estudio de arquitectura">
-          <div class="icon book-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          </div>
+          <img src="/books/101-lecciones.jpg" alt="101 Lecciones de un estudio de arquitectura" class="icon book-icon" />
           <span class="tip">101 Lecciones</span>
         </a>
       </div>
@@ -61,17 +63,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="row">
         <span data-en="I build iOS apps." data-es="Creo apps para iOS.">I build iOS apps.</span>
         <div class="fan">
-          <a href="/apps" class="slot" aria-label="Jergas">
+          <a href="#" class="slot" aria-label="Jergas">
             <div class="icon" style="background:#1a3d2b;">J</div>
             <span class="tip">Jergas</span>
           </a>
-          <a href="/apps" class="slot" aria-label="Bimio">
+          <a href="/apps/bimio" class="slot" aria-label="Bimio">
             <div class="icon" style="background:#241a3d;">B</div>
             <span class="tip">Bimio</span>
           </a>
-          <a href="/apps" class="slot" aria-label="Lazo">
+          <a href="/apps/lazo" class="slot" aria-label="Lazo">
             <div class="icon" style="background:#3d2a1a;">L</div>
             <span class="tip">Lazo</span>
+          </a>
+          <a href="/apps" class="slot" aria-label="See all">
+            <div class="icon ver-todos">···</div>
+            <span class="tip" data-en="See all" data-es="Ver todos">See all</span>
           </a>
         </div>
       </div>
@@ -257,9 +263,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     cursor: pointer;
   }
 
-  .arch { border-radius: 0.5rem; }
+  .arch { border-radius: 0.5rem; object-fit: cover; }
 
-  .book-icon { background: #1c1a2e; border-radius: 0.5rem; }
+  .ver-todos {
+    background: #f3f4f6;
+    color: #9ca3af;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    border-color: #e5e7eb;
+  }
+
+  .book-icon { border-radius: 0.5rem; object-fit: cover; background: #1c1a2e; }
 
   .social-x  { background: #000; }
   .social-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
@@ -271,30 +286,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .fan { gap: 0; }
 
     .fan .slot:nth-child(1) {
-      transform: rotate(-6deg) translateX(14px);
+      transform: rotate(-6deg) translateX(18px);
       z-index: 10;
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0ms;
     }
     .fan .slot:nth-child(2) {
-      transform: rotate(3deg) translateX(7px);
+      transform: rotate(3deg) translateX(12px);
       z-index: 20;
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 40ms;
     }
     .fan .slot:nth-child(3) {
-      transform: rotate(-4deg) translateX(0);
+      transform: rotate(-4deg) translateX(6px);
       z-index: 30;
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 80ms;
     }
     .fan .slot:nth-child(4) {
-      transform: rotate(5deg) translateX(-5px);
+      transform: rotate(5deg) translateX(0px);
       z-index: 40;
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 120ms;
+    }
+    .fan .slot:nth-child(5) {
+      transform: rotate(-3deg) translateX(-5px);
+      z-index: 50;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 160ms;
     }
 
     .fan:hover .slot:nth-child(1) { transform: rotate(0deg) translateX(0);    }
     .fan:hover .slot:nth-child(2) { transform: rotate(0deg) translateX(8px);  }
     .fan:hover .slot:nth-child(3) { transform: rotate(0deg) translateX(16px); }
     .fan:hover .slot:nth-child(4) { transform: rotate(0deg) translateX(24px); }
+    .fan:hover .slot:nth-child(5) { transform: rotate(0deg) translateX(32px); }
   }
 
   /* ── Tooltips ── */

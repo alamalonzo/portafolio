@@ -1,6 +1,9 @@
 ---
 import SidebarLayout from '../../layouts/SidebarLayout.astro';
-import { apps } from '../../data/apps.js';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('apps');
+const apps = entries.sort((a, b) => a.data.order - b.data.order);
 
 const skills = [
   { category: 'Languages', items: 'Swift · SwiftUI' },
@@ -56,37 +59,35 @@ const skills = [
         </p>
       </div>
       {apps.map((app) => {
-        const href = app.status === 'live' ? app.appStoreUrl : `/apps/${app.slug}`;
-        const isExternal = app.status === 'live';
+        const href = app.data.status === 'live' ? app.data.appStoreUrl : `/apps/${app.id}`;
+        const isExternal = app.data.status === 'live';
         return (
           <a
             href={href}
-            class={`app-card ${app.status}`}
+            class={`app-card ${app.data.status}`}
             {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
             <div class="card-top">
-              <div class="app-icon" style={`background:${app.bg};`}>{app.letter}</div>
-              <span class={`status-badge ${app.status}`} data-en={app.statusLabel} data-es={app.statusLabelEs}>
-                {app.statusLabel}
+              <div class="app-icon" style={`background:${app.data.bg};`}>{app.data.letter}</div>
+              <span class={`status-badge ${app.data.status}`} data-en={app.data.statusLabel} data-es={app.data.statusLabelEs || app.data.statusLabel}>
+                {app.data.statusLabel}
               </span>
             </div>
 
-            <h2 class="app-name">{app.name}</h2>
+            <h2 class="app-name">{app.data.name}</h2>
 
-            <p class="app-desc" data-en={app.descriptionEn} data-es={app.descriptionEs}>
-              {app.descriptionEn}
-            </p>
+            <p class="app-desc" data-en={app.data.resumen} data-es={app.data.resumenEs || app.data.resumen}>{app.data.resumen}</p>
 
             <div class="app-tags">
-              {app.tags.map((tag) => (
+              {app.data.tags.map((tag) => (
                 <span class="tag">{tag}</span>
               ))}
             </div>
 
             <span class="card-cta">
-              {app.status === 'live'
+              {app.data.status === 'live'
                 ? <span data-en="View on App Store ↗" data-es="Ver en App Store ↗">View on App Store ↗</span>
-                : <span data-en="See details →" data-es="Ver detalles →">See details →</span>
+                : <span data-en="View details →" data-es="Ver detalles →">View details →</span>
               }
             </span>
 
@@ -225,9 +226,9 @@ const skills = [
       gap: 1rem;
     }
 
-    .back-link { margin-top: 0; }
+    .back-link { display: none; }
+    .sidebar-social { display: none; }
     .sidebar-role { display: none; }
-    .sidebar-social { margin-top: 0; }
   }
 
   /* ── Main ── */

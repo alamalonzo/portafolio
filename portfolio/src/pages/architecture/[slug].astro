@@ -1,6 +1,6 @@
 ---
 import DetailLayout from '../../layouts/DetailLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('architecture');
@@ -8,19 +8,21 @@ export async function getStaticPaths() {
   return projects.map((entry, i) => ({
     params: { slug: entry.id },
     props: {
-      project: entry.data,
+      entry,
       prev: projects[i - 1] ? { ...projects[i - 1].data, slug: projects[i - 1].id } : null,
       next: projects[i + 1] ? { ...projects[i + 1].data, slug: projects[i + 1].id } : null,
     },
   }));
 }
 
-const { project, prev, next } = Astro.props;
+const { entry, prev, next } = Astro.props;
+const project = entry.data;
+const { Content } = await render(entry);
 ---
 
 <DetailLayout
   title={`${project.title} — Alam Alonzo`}
-  description={project.descriptionEn[0]}
+  description={project.resumen}
 >
 
   <!-- Back link -->
@@ -31,13 +33,15 @@ const { project, prev, next } = Astro.props;
   <!-- Header -->
   <header class="project-header">
     <h1 class="project-title">{project.title}</h1>
-    <p class="project-meta">{project.type} · {project.year} · {project.location} · {project.area}</p>
+    <p class="project-meta" data-en={`${project.type} · ${project.year} · ${project.location} · ${project.area}`} data-es={`${project.typeEs || project.type} · ${project.year} · ${project.locationEs || project.location} · ${project.area}`}>{project.type} · {project.year} · {project.location} · {project.area}</p>
   </header>
 
   <!-- Hero image slider -->
   <div class="hero-slider" id="hero-slider">
-    {project.photos.map((color, i) => (
-      <div class={`slide${i === 0 ? ' active' : ''}`} style={`background:${color};`} data-index={i}></div>
+    {project.photos.map((photo, i) => (
+      photo.startsWith('/')
+        ? <img src={photo} alt={`${project.title} ${i + 1}`} class={`slide${i === 0 ? ' active' : ''}`} data-index={i} />
+        : <div class={`slide${i === 0 ? ' active' : ''}`} style={`background:${photo};`} data-index={i}></div>
     ))}
     <button class="slider-btn slider-prev" id="slider-prev" aria-label="Previous">&#8592;</button>
     <button class="slider-btn slider-next" id="slider-next" aria-label="Next">&#8594;</button>
@@ -85,7 +89,7 @@ const { project, prev, next } = Astro.props;
       </div>
       <div class="spec-row">
         <span class="spec-label" data-en="Location" data-es="Ubicación">Location</span>
-        <span class="spec-value">{project.location}</span>
+        <span class="spec-value" data-en={project.location} data-es={project.locationEs || project.location}>{project.location}</span>
       </div>
       {project.budget && (
         <div class="spec-row">
@@ -95,39 +99,59 @@ const { project, prev, next } = Astro.props;
       )}
       <div class="spec-row">
         <span class="spec-label" data-en="Duration" data-es="Duración">Duration</span>
-        <span class="spec-value">{project.duration}</span>
+        <span class="spec-value" data-en={project.duration} data-es={project.durationEs || project.duration}>{project.duration}</span>
       </div>
       <div class="spec-row">
         <span class="spec-label" data-en="Status" data-es="Estado">Status</span>
-        <span class="spec-value">{project.status}</span>
+        <span class="spec-value" data-en={project.status} data-es={project.statusEs || project.status}>{project.status}</span>
       </div>
       <div class="spec-row">
         <span class="spec-label" data-en="Role" data-es="Rol">Role</span>
-        <span class="spec-value">{project.role}</span>
+        <span class="spec-value" data-en={project.role} data-es={project.roleEs || project.role}>{project.role}</span>
       </div>
     </div>
 
     <div class="description">
-      {project.descriptionEn.map((para, i) => (
-        <p data-en={para} data-es={project.descriptionEs[i]}>{para}</p>
-      ))}
+      {project.descriptionEn
+        ? project.descriptionEn.map((para, i) => (
+            <p data-en={para} data-es={project.descriptionEs?.[i] ?? para}>{para}</p>
+          ))
+        : <Content />
+      }
     </div>
   </div>
 
+  <!-- Skills & Tools -->
+  {project.skills && project.skills.length > 0 && (
+    <div class="skills-section">
+      <p class="skills-label" data-en="Skills & Tools" data-es="Habilidades y Herramientas">Skills & Tools</p>
+      <div class="skills-list">
+        {project.skills.map(skill => <span class="skill-tag">{skill}</span>)}
+      </div>
+    </div>
+  )}
+
   <!-- Photo gallery -->
-  <div class="gallery">
-    <div class="gallery-main" style={`background:${project.photos[0]};`}></div>
-    <div class="gallery-row">
-      {project.photos.slice(1, 3).map((color) => (
-        <div class="gallery-half" style={`background:${color};`}></div>
-      ))}
-    </div>
-    <div class="gallery-row">
-      {project.photos.slice(3).map((color) => (
-        <div class="gallery-half" style={`background:${color};`}></div>
-      ))}
-    </div>
-  </div>
+  {(() => {
+    const galleryPhotos = project.gallery ?? project.photos.slice(0, 4);
+    const renderPhoto = (photo: string, cls: string, alt: string) =>
+      photo.startsWith('/')
+        ? <img src={photo} alt={alt} class={cls} />
+        : <div class={cls} style={`background:${photo};`}></div>;
+    return (
+      <div class="gallery">
+        {renderPhoto(galleryPhotos[0], 'gallery-main', project.title)}
+        <div class="gallery-row">
+          {galleryPhotos.slice(1, 3).map((p, i) => renderPhoto(p, 'gallery-half', `${project.title} ${i + 2}`))}
+        </div>
+        {galleryPhotos.length > 3 && (
+          <div class="gallery-row">
+            {galleryPhotos.slice(3).map((p, i) => renderPhoto(p, 'gallery-half', `${project.title} ${i + 4}`))}
+          </div>
+        )}
+      </div>
+    );
+  })()}
 
   <!-- Results (only if available) -->
   {project.results && project.results.length > 0 && (
@@ -141,14 +165,14 @@ const { project, prev, next } = Astro.props;
     </div>
   )}
 
-  <!-- PM section (CEDIGLO only) -->
+  <!-- PM section (Centro Médico MMB only) -->
   {project.isPM && (
     <div class="pm-section">
       <p class="pm-eyebrow" data-en="Project Management" data-es="Project Management">Project Management</p>
       <h2 class="pm-title" data-en="Beyond architecture" data-es="Más allá de la arquitectura">Beyond architecture</h2>
       <div class="pm-body">
-        <p data-en="CEDIGLO was my most complex project management challenge. I was responsible for the full delivery lifecycle: assembling the consultant team, writing and negotiating contracts, building and tracking a RD$40M+ budget, and resolving field conflicts between structural, MEP, and architectural work in real time." data-es="CEDIGLO fue mi reto más complejo de project management. Fui responsable del ciclo completo de entrega: armar el equipo de consultores, redactar y negociar contratos, construir y dar seguimiento a un presupuesto de RD$40M+, y resolver conflictos en campo entre los trabajos estructurales, MEP y arquitectónicos en tiempo real.">
-          CEDIGLO was my most complex project management challenge. I was responsible for the full delivery lifecycle: assembling the consultant team, writing and negotiating contracts, building and tracking a RD$40M+ budget, and resolving field conflicts between structural, MEP, and architectural work in real time.
+        <p data-en="Centro Médico MMB was my most complex project management challenge. I was responsible for the full delivery lifecycle: assembling the consultant team, writing and negotiating contracts, building and tracking a RD$40M+ budget, and resolving field conflicts between structural, MEP, and architectural work in real time." data-es="Centro Médico MMB fue mi reto más complejo de project management. Fui responsable del ciclo completo de entrega: armar el equipo de consultores, redactar y negociar contratos, construir y dar seguimiento a un presupuesto de RD$40M+, y resolver conflictos en campo entre los trabajos estructurales, MEP y arquitectónicos en tiempo real.">
+          Centro Médico MMB was my most complex project management challenge. I was responsible for the full delivery lifecycle: assembling the consultant team, writing and negotiating contracts, building and tracking a RD$40M+ budget, and resolving field conflicts between structural, MEP, and architectural work in real time.
         </p>
         <p data-en="The project was delivered on schedule. Download my full PM CV for detail on methodology, tools, and team structure." data-es="El proyecto fue entregado en tiempo. Descarga mi CV de PM completo para detalles sobre metodología, herramientas y estructura del equipo.">
           The project was delivered on schedule. Download my full PM CV for detail on methodology, tools, and team structure.
@@ -215,7 +239,7 @@ const { project, prev, next } = Astro.props;
   .hero-slider {
     position: relative;
     width: 100%;
-    height: 400px;
+    aspect-ratio: 1188 / 725;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #e5e7eb;
@@ -226,6 +250,9 @@ const { project, prev, next } = Astro.props;
     inset: 0;
     opacity: 0;
     transition: opacity 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .slide.active { opacity: 1; }
@@ -276,7 +303,7 @@ const { project, prev, next } = Astro.props;
 
   .dot.active { background: #374151; }
 
-  @media (max-width: 640px) { .hero-slider { height: 240px; } }
+  /* hero-slider uses aspect-ratio, no height override needed on mobile */
 
   .overview {
     display: grid;
@@ -309,23 +336,56 @@ const { project, prev, next } = Astro.props;
 
   .description p { font-size: 0.95rem; color: #374151; line-height: 1.75; }
 
+  /* ── Skills & Tools ── */
+  .skills-section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .skills-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    font-size: 0.75rem;
+    color: #374151;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
   .gallery { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 3rem; }
 
   .gallery-main {
     width: 100%;
-    height: 360px;
+    aspect-ratio: 1188 / 725;
     border-radius: 6px;
     border: 1px solid #e5e7eb;
   }
 
   .gallery-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 
-  .gallery-half { height: 200px; border-radius: 6px; border: 1px solid #e5e7eb; }
+  .gallery-half { aspect-ratio: 1188 / 725; border-radius: 6px; border: 1px solid #e5e7eb; object-fit: cover; width: 100%; }
+  .gallery-main { object-fit: cover; width: 100%; }
 
-  @media (max-width: 640px) {
-    .gallery-main { height: 220px; }
-    .gallery-half { height: 140px; }
-  }
+  /* gallery uses aspect-ratio, scales naturally on mobile */
 
   .results {
     display: grid;

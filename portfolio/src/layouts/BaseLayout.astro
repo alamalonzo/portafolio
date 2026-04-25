@@ -43,6 +43,13 @@ const {
     document.querySelectorAll<HTMLButtonElement>('#lang-toggle button').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
+    // Toggle feature lists (EN/ES)
+    document.querySelectorAll<HTMLElement>('.features-en').forEach((el) => {
+      el.style.display = lang === 'en' ? '' : 'none';
+    });
+    document.querySelectorAll<HTMLElement>('.features-es').forEach((el) => {
+      el.style.display = lang === 'es' ? '' : 'none';
+    });
     localStorage.setItem('lang', lang);
   }
 
