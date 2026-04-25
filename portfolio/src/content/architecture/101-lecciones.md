@@ -27,9 +27,26 @@ skills:
   - Project Management
   - Architecture Practice
 descriptionEn:
-  - "A book drawn from a decade inside a Caribbean architecture studio, documenting 101 lessons pulled from everyday professional practice from project management and client relationships to the universal dilemmas that any studio faces regardless of geography."
+  - "Durante una década trabajé en un estudio de arquitectura en el Caribe, cre-
+ciendo junto a una oficina que comenzaba desde cero. Esa experiencia me
+permitió entender la arquitectura más allá del diseño: como un proceso lleno de
+decisiones, errores y aprendizajes construidos en el día a día.
+
+A partir de notas acumuladas con el tiempo, reuní 101 lecciones breves que
+reflejan los dilemas universales de la profesión. Este no es un manual técnico,
+sino una invitación a reflexionar sobre la práctica arquitectónica como un ejer-
+cicio constante de adaptación que, además de transformar espacios, también
+nos moldea como arquitectos"
   - "Research, writing, and full editorial production. Published on Amazon in print format in 2025."
 descriptionEs:
-  - "Libro basado en una década de experiencia dentro de un estudio de arquitectura en el Caribe, documentando 101 lecciones extraídas de la práctica profesional cotidiana desde la gestión de proyectos y la relación con clientes, hasta los dilemas universales que enfrenta cualquier estudio sin importar su contexto geográfico."
+  - "For a decade I worked in an architecture studio in the Caribbean, growing
+alongside an office that started from zero. That experience allowed me to un-
+derstand architecture beyond design: as a process full of decisions, errors, and
+lessons built day by day."
+
+"Drawing from notes accumulated over time, I compiled 101 brief lessons that
+reflect universal dilemmas of the profession. This is not a technical manual, but
+an invitation to reflect on architectural practice as a constant exercise of adap-
+tation that, beyond transforming spaces, also shapes us as architects."
   - "Investigación, redacción y producción editorial completa. Publicado en Amazon en formato físico en 2025."
 ---

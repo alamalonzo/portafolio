@@ -26,6 +26,7 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
     <nav class="sidebar-nav">
       <a href="#projects" class="nav-link active" data-en="Projects" data-es="Proyectos">Projects</a>
       <a href="/pdfs/cv-2026-en.pdf" download class="nav-link" data-en="CV ↓" data-es="CV ↓">CV ↓</a>
+      <a href="/pdfs/portafolio-2026-en.pdf" data-href-en="/pdfs/portafolio-2026-en.pdf" data-href-es="/pdfs/portafolio-2026-es.pdf" download class="nav-link" data-en="Portfolio ↓" data-es="Portafolio ↓">Portfolio ↓</a>
     </nav>
 
     <a href="/" class="back-link">← <span data-en="Back to home" data-es="Volver al inicio">Back to home</span></a>
@@ -75,17 +76,11 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
       </a>
     ))}
 
-    <!-- PM + CV footer -->
+    <!-- CV + Portafolio footer -->
     <div class="arch-footer">
-      <div class="pm-block">
-        <p class="pm-label" data-en="Project Management" data-es="Project Management">Project Management</p>
-        <p class="pm-text" data-en="For detailed PM work on Centro Médico MMB — budget management (RD$40M+), team coordination and delivery — see the full case study above." data-es="Para el trabajo de PM en Centro Médico MMB — gestión de presupuesto (RD$40M+), coordinación de equipo y entrega — ver el caso completo arriba.">
-          For detailed PM work on Centro Médico MMB — budget management (RD$40M+), team coordination and delivery — see the full case study above.
-        </p>
-      </div>
       <div class="cv-links">
         <a href="/pdfs/cv-2026-en.pdf" download class="cv-btn" data-en="Download CV (EN)" data-es="Descargar CV (EN)">Download CV (EN)</a>
-        <a href="/pdfs/portafolio-2026-es.pdf" download class="cv-btn" data-en="Download Portfolio (ES)" data-es="Descargar Portafolio (ES)">Download Portfolio (ES)</a>
+        <a href="/pdfs/portafolio-2026-en.pdf" data-href-en="/pdfs/portafolio-2026-en.pdf" data-href-es="/pdfs/portafolio-2026-es.pdf" download class="cv-btn" data-en="Download Portfolio" data-es="Descargar Portafolio">Download Portfolio</a>
       </div>
     </div>
 
@@ -341,22 +336,6 @@ const projects = entries.sort((a, b) => a.data.order - b.data.order);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-  }
-
-  .pm-label {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: #9ca3af;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .pm-text {
-    font-size: 0.85rem;
-    color: #6b7280;
-    line-height: 1.6;
-    max-width: 52ch;
   }
 
   .cv-links {

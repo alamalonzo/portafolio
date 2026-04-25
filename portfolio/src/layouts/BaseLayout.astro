@@ -65,6 +65,10 @@ const ogImageUrl = new URL(ogImage, siteUrl).toString();
       const text = lang === 'es' ? el.dataset.es : el.dataset.en;
       if (text !== undefined) el.textContent = text;
     });
+    document.querySelectorAll<HTMLAnchorElement>('[data-href-en]').forEach((el) => {
+      const href = lang === 'es' ? el.dataset.hrefEs : el.dataset.hrefEn;
+      if (href !== undefined) el.href = href;
+    });
     document.querySelectorAll<HTMLButtonElement>('#lang-toggle button').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
